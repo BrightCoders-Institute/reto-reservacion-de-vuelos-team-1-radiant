@@ -14,6 +14,8 @@ import InputField from '../components/InputField';
 import Title from '../components/Title';
 import CustomCheckbox from '../components/CustomCheckbox';
 import { ButtonPrimary } from '../components/ButtonPrimary';
+import { FIREBASE_AUTH } from '../database/firebaseconfig';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
 
 
 const SignUpScreen = () => {
@@ -22,6 +24,7 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState('');
   const [agree1, setAgree1] = useState(false);
   const [agree2, setAgree2] = useState(false);
+  const auth = FIREBASE_AUTH;
 
   //States for error messages
   const [errorFirstName, setErrorFirstName] = useState('');
@@ -106,7 +109,19 @@ const SignUpScreen = () => {
       agree1Validation());
   }, [firstName, email, password, agree1]);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
+
+    setIsLoading(true);
+    try {
+      const response = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(response);
+    } catch (error: any) {
+      console.log(error);
+      alert('Sign in failed: ' + error.message);
+    } finally {
+      setIsLoading(false);
+    }
+
     const isValidFields =
       firstNameValidation() &&
       emailValidation() &&

@@ -1,8 +1,8 @@
 import React from 'react';
-import {TextInput, StyleSheet, View} from 'react-native';
-import {InputProps} from '../interfaces/interfaces';
+import { TextInput, StyleSheet, View } from 'react-native';
+import { InputProps } from '../interfaces/interfaces';
 
-const Input = ({label, value, onChangeText}: InputProps) => (
+const Input = ({ label, value, onChangeText }: InputProps) => (
   <View>
     <TextInput
       label={label}

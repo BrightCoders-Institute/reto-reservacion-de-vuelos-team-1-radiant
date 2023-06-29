@@ -2,74 +2,20 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
-  Image,
+  Image, Dimensions,
 } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
-import {
-  TitleProps,
-  InputProps,
-  CheckboxProps,
-  PrimaryButtonProps,
-} from '../interfaces/interfaces';
 
-import LoadingModal from './LoadingModal';
+import PrimaryButton from '../components/PrimaryButton';
+import LoadingModal from '../components/LoadingModal';
+import InputField from '../components/InputField';
+import Title from '../components/Title';
+import CustomCheckbox from '../components/CustomCheckbox';
 
-const Title = ({ children }: TitleProps) => (
-  <Text style={styles.title}>{children}</Text>
-);
+const windowWidth = Dimensions.get('window').width;
 
-const InputField = ({ label, value, onChangeText, error, secureTextEntry }: InputProps) => (
-  <View>
-    <View style={styles.inputLabelContainer}>
-      <Text style={styles.inputLabel}>{label}</Text>
-      {error ? (<Text style={styles.error}>{error}</Text>) : null}
-    </View>
-    <TextInput
-      value={value}
-      onChangeText={onChangeText}
-      style={styles.input}
-      secureTextEntry={secureTextEntry}
-    />
-  </View>
-);
-
-const CustomCheckbox = ({ value, onValueChange, label, error }: CheckboxProps) => {
-  const handleCheckboxChange = () => {
-    onValueChange(!value);
-  };
-
-  return (
-    <>
-      <View style={styles.checkbox}>
-        <CheckBox
-          value={value}
-          onValueChange={handleCheckboxChange}
-          style={value ? styles.checkboxSelected : styles.checkboxUnselected}
-        />
-        <Text>{label}</Text>
-      </View>
-
-      {error ? (<Text style={styles.errorCheckBox}>{error}</Text>) : null}
-
-    </>
-  );
-};
-
-const PrimaryButton = ({ title, onPress, isValid }: PrimaryButtonProps) => (
-  <TouchableOpacity style={[
-    styles.buttonContainer, isValid ? styles.primaryButtonValid : styles.primaryButtonInvalid]}
-    onPress={onPress}
-  >
-    <Text style={styles.buttonText}>{title}</Text>
-  </TouchableOpacity>
-);
-
-
-
-const SignUpForm = () => {
+const SignUpScreen = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -222,15 +168,16 @@ const SignUpForm = () => {
           error={isSubmitted && errorEmail}
           secureTextEntry={false}
         />
-        <InputField
-          label="Password *"
-          value={password}
-          onChangeText={text => setPassword(text)}
-          error={isSubmitted && errorPassword}
-          secureTextEntry={secureTextEntry}
-        />
-        <View style={styles.passwordIconContainer}>
-          <TouchableOpacity onPress={togglePasswordVisibility}>
+        <View style={styles.inputContainerWithEye}>
+          <InputField
+            label="Password *"
+            value={password}
+            onChangeText={text => setPassword(text)}
+            error={isSubmitted && errorPassword}
+            secureTextEntry={secureTextEntry}
+            style={styles.input}
+          />
+          <TouchableOpacity style={styles.passwordIconContainer} onPress={togglePasswordVisibility}>
             <Image
               style={styles.eye}
               source={require('../assets/ojo.png')}
@@ -255,9 +202,11 @@ const SignUpForm = () => {
           error=""
         />
       </View>
-      <PrimaryButton title="Sign Up" onPress={handleSignUp} isValid={isValid} />
-      <Text style={styles.textOr}>or</Text>
-      <PrimaryButton title="Sign Up with Google" onPress={handleGoogleSignUp} isValid={true} />
+      <View style={styles.buttonContainer}>
+        <PrimaryButton title="Sign Up" onPress={handleSignUp} isValid={isValid} />
+        <Text style={styles.textOr}>or</Text>
+        <PrimaryButton title="Sign Up with Google" onPress={handleGoogleSignUp} isValid={true} />
+      </View>
       <View style={styles.googleIconContainer}>
         <Image style={styles.google} source={require('../assets/google.png')} />
       </View>
@@ -278,49 +227,50 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 30,
   },
-  title: {
-    fontSize: 26,
-    color: '#2D7BDD',
-    fontWeight: 'bold',
-    marginRight: 272,
-    marginBottom: 30,
-  },
   inputContainer: {
-    marginRight: 15,
-    marginLeft: 14,
     marginBottom: 10,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-  },
-  inputLabelContainer: {
-    flexDirection: 'row',
+    marginLeft: '5%',
+    width: windowWidth * 0.9,
   },
   inputLabel: {
     marginBottom: 5,
     fontSize: 15,
     fontWeight: 'bold',
   },
+  inputContainerWithEye: {
+    position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: windowWidth * 0.9,
+  },
+
   input: {
-    width: 360,
-    height: 47,
+    position: 'relative',
+    width: windowWidth * 0.9,
     fontSize: 20,
     fontWeight: 'bold',
     borderColor: 'gray',
     borderWidth: 1,
-    paddingLeft: 8,
+    paddingLeft: 10,
     paddingTop: 10,
     marginTop: 2,
     marginBottom: 10,
   },
+  inputFocused: {
+    borderColor: '#2774D5',
+  },
   passwordIconContainer: {
     position: 'absolute',
-    right: 15,
-    top: 210,
+    left: '90%',
+    bottom: '25%',
   },
   eye: {
     width: 25,
     height: 25,
     tintColor: '#A0A0A0',
+  },
+  activeEye: {
+    tintColor: '#2774D5',
   },
   checkboxContainer: {
     flexDirection: 'column',
@@ -329,50 +279,35 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 14,
   },
-  checkbox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5,
-  },
-  checkboxSelected: {
-    backgroundColor: 'blue',
-  },
-  checkboxUnselected: {
-    backgroundColor: 'transparent',
-  },
   buttonContainer: {
-    borderRadius: 10,
     marginTop: 10,
+    marginBottom: 10,
+    marginLeft: '5%',
+    height: '20%',
+    width: windowWidth * 0.9,
+  },
+  button: {
+    position: 'relative',
+    width: windowWidth * 0.9,
+    borderRadius: 10,
+    backgroundColor: '#A0A0A0',
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    width: 360,
-    height: 46,
-  },
-  primaryButtonInvalid: {
-    backgroundColor: '#A0A0A0',
-  },
-  primaryButtonValid: {
-    backgroundColor: '#2774D5',
   },
   buttonText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
-    fontFamily: 'System',
   },
   textOr: {
-    marginTop: 7,
+    marginLeft: '50%',
+    marginTop: 5,
+    marginBottom: 5,
   },
   googleIconContainer: {
-    position: 'absolute',
-    top: 560,
-    left: 65,
-  },
-  googleIcon: {
-    width: 20,
-    height: 20,
-    marginLeft: 10,
+    left: '10%',
+    bottom: '25%',
   },
   google: {
     width: 25,
@@ -380,7 +315,7 @@ const styles = StyleSheet.create({
   },
   textLogIn: {
     fontSize: 16,
-    marginTop: 18,
+    marginLeft: '25%',
   },
   underline: {
     textDecorationLine: 'underline',
@@ -390,14 +325,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 15,
     marginLeft: 10,
-    // maxWidth: 300,
-  },
-  errorCheckBox: {
-    color: 'red',
-    fontSize: 13,
-    marginLeft: 10,
-    width: 'auto',
   },
 });
 
-export default SignUpForm;
+export default SignUpScreen;

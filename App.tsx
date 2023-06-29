@@ -6,15 +6,13 @@
  */
 
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
-import SignUpForm from './src/components/SignUp';
+import { SafeAreaView } from 'react-native';
+import SignUpScreen from './src/screens/SignUpScreen';
 
 function App(): JSX.Element {
   return (
     <SafeAreaView>
-      <View>
-        <SignUpForm />
-      </View>
+      <SignUpScreen />
     </SafeAreaView>
   );
 }

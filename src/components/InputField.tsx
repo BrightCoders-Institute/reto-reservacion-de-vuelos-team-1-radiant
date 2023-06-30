@@ -19,7 +19,7 @@ const InputField = ({ label, value, onChangeText, error, secureTextEntry }: Inpu
         setIsFocused(false);
     };
     return (
-        <View>
+        <View style={styles.inputContainer}>
             <View style={styles.inputLabelContainer}>
                 <Text style={styles.inputLabel}>{label}</Text>
                 {error ? (<Text style={styles.error}>{error}</Text>) : null}
@@ -38,14 +38,14 @@ const InputField = ({ label, value, onChangeText, error, secureTextEntry }: Inpu
 
 const styles = StyleSheet.create({
     inputContainer: {
-        marginRight: 15,
-        marginLeft: 14,
         marginBottom: 10,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'flex-start',
+
     },
     inputLabelContainer: {
         flexDirection: 'row',
+        alignSelf: 'flex-start',
     },
     inputLabel: {
         marginBottom: 5,
@@ -53,16 +53,25 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     input: {
-        width: 360,
-        height: 47,
+        width: '100%',
+        height: 50,
         fontSize: 20,
         fontWeight: 'bold',
         borderColor: 'gray',
         borderWidth: 1,
-        paddingLeft: 8,
+        paddingLeft: 10,
         paddingTop: 10,
         marginTop: 2,
         marginBottom: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 3,
+        elevation: 3,
+        backgroundColor: '#fff',
     },
     inputFocused: {
         borderColor: '#2774D5',

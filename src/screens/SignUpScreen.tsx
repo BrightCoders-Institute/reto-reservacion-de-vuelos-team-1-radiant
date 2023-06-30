@@ -4,16 +4,17 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image, Dimensions,
+  Image,
+  ImageSourcePropType,
+  KeyboardAvoidingView,
 } from 'react-native';
 
-import PrimaryButton from '../components/PrimaryButton';
 import LoadingModal from '../components/LoadingModal';
 import InputField from '../components/InputField';
 import Title from '../components/Title';
 import CustomCheckbox from '../components/CustomCheckbox';
+import { ButtonPrimary } from '../components/ButtonPrimary';
 
-const windowWidth = Dimensions.get('window').width;
 
 const SignUpScreen = () => {
   const [firstName, setFirstName] = useState('');
@@ -149,45 +150,43 @@ const SignUpScreen = () => {
 
   };
 
+  const googleLogo: ImageSourcePropType = require('../assets/google.png');
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="height">
       <Title>Sign Up</Title>
-      <View style={styles.inputContainer}>
+      <InputField
+        label="First Name"
+        value={firstName}
+        onChangeText={text => setFirstName(text)}
+        error={isSubmitted && errorFirstName}
+        secureTextEntry={false}
+      />
+      <InputField
+        label="Email *"
+        value={email}
+        onChangeText={text => setEmail(text)}
+        error={isSubmitted && errorEmail}
+        secureTextEntry={false}
+      />
+      <View>
         <InputField
-          label="First Name"
-          value={firstName}
-          onChangeText={text => setFirstName(text)}
-          error={isSubmitted && errorFirstName}
-          secureTextEntry={false}
+          label="Password *"
+          value={password}
+          onChangeText={text => setPassword(text)}
+          error={isSubmitted && errorPassword}
+          secureTextEntry={secureTextEntry}
         />
-        <InputField
-          label="Email *"
-          value={email}
-          onChangeText={text => setEmail(text)}
-          error={isSubmitted && errorEmail}
-          secureTextEntry={false}
-        />
-        <View style={styles.inputContainerWithEye}>
-          <InputField
-            label="Password *"
-            value={password}
-            onChangeText={text => setPassword(text)}
-            error={isSubmitted && errorPassword}
-            secureTextEntry={secureTextEntry}
-            style={styles.input}
+        <TouchableOpacity style={styles.passwordIconContainer} onPress={togglePasswordVisibility}>
+          <Image
+            style={[styles.eye, secureTextEntry ? styles.desactivedEye : styles.activeEye]}
+            source={require('../assets/ojo.png')}
           />
-          <TouchableOpacity style={styles.passwordIconContainer} onPress={togglePasswordVisibility}>
-            <Image
-              style={styles.eye}
-              source={require('../assets/ojo.png')}
-            />
-          </TouchableOpacity>
-        </View>
-        <Text>
-          Use 8 or more characthers with a mix of letters, numbers, and symbols.
-        </Text>
+        </TouchableOpacity>
       </View>
+      <Text>
+        Use 8 or more characthers with a mix of letters, numbers, and symbols.
+      </Text>
       <View style={styles.checkboxContainer}>
         <CustomCheckbox
           value={agree1}
@@ -202,59 +201,22 @@ const SignUpScreen = () => {
           error=""
         />
       </View>
-      <View style={styles.buttonContainer}>
-        <PrimaryButton title="Sign Up" onPress={handleSignUp} isValid={isValid} />
-        <Text style={styles.textOr}>or</Text>
-        <PrimaryButton title="Sign Up with Google" onPress={handleGoogleSignUp} isValid={true} />
-      </View>
-      <View style={styles.googleIconContainer}>
-        <Image style={styles.google} source={require('../assets/google.png')} />
-      </View>
-      <View>
-        <Text style={styles.textLogIn}>
-          Already have an account? <Text style={styles.underline}>Log in</Text>
-        </Text>
-      </View>
+
+      <ButtonPrimary title="Sign Up" onPress={handleSignUp} isValid={isValid} />
+      <Text style={styles.textOr}>or</Text>
+      <ButtonPrimary title="Sign Up With Google" imgSource={googleLogo} onPress={handleGoogleSignUp} isValid={true} />
+      <Text style={styles.textLogIn}>
+        Already have an account? <Text style={styles.underline}>Log in</Text>
+      </Text>
       <LoadingModal isLoading={isLoading} isRegistered={isRegistered} />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: 30,
-  },
-  inputContainer: {
-    marginBottom: 10,
-    marginLeft: '5%',
-    width: windowWidth * 0.9,
-  },
-  inputLabel: {
-    marginBottom: 5,
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
-  inputContainerWithEye: {
-    position: 'relative',
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: windowWidth * 0.9,
-  },
-
-  input: {
-    position: 'relative',
-    width: windowWidth * 0.9,
-    fontSize: 20,
-    fontWeight: 'bold',
-    borderColor: 'gray',
-    borderWidth: 1,
-    paddingLeft: 10,
-    paddingTop: 10,
-    marginTop: 2,
-    marginBottom: 10,
   },
   inputFocused: {
     borderColor: '#2774D5',
@@ -262,11 +224,13 @@ const styles = StyleSheet.create({
   passwordIconContainer: {
     position: 'absolute',
     left: '90%',
-    bottom: '25%',
+    bottom: '35%',
   },
   eye: {
     width: 25,
     height: 25,
+  },
+  desactivedEye: {
     tintColor: '#A0A0A0',
   },
   activeEye: {
@@ -275,30 +239,8 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    marginRight: 105,
     marginTop: 20,
     fontSize: 14,
-  },
-  buttonContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: '5%',
-    height: '20%',
-    width: windowWidth * 0.9,
-  },
-  button: {
-    position: 'relative',
-    width: windowWidth * 0.9,
-    borderRadius: 10,
-    backgroundColor: '#A0A0A0',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
   textOr: {
     marginLeft: '50%',
@@ -307,15 +249,16 @@ const styles = StyleSheet.create({
   },
   googleIconContainer: {
     left: '10%',
-    bottom: '25%',
+    bottom: '43%',
   },
   google: {
     width: 25,
     height: 25,
   },
   textLogIn: {
+    marginTop: 40,
     fontSize: 16,
-    marginLeft: '25%',
+    alignSelf: 'center',
   },
   underline: {
     textDecorationLine: 'underline',

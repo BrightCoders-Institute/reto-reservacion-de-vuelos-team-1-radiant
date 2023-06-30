@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image, Dimensions,
+  Image,
+  Dimensions,
 } from 'react-native';
 
 import PrimaryButton from '../components/PrimaryButton';
@@ -39,6 +40,7 @@ const SignUpScreen = () => {
     setSecureTextEntry(!secureTextEntry);
   };
 
+  const eyeIconStyles = [styles.eye, secureTextEntry ? styles.activeEye : null];
 
   //Validation Function for each field
   const firstNameValidation = () => {
@@ -73,7 +75,8 @@ const SignUpScreen = () => {
       return false;
     }
 
-    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&^#])[A-Za-z\d@$!%*?&^#]{8,}$/;
+    const passwordPattern =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&^#])[A-Za-z\d@$!%*?&^#]{8,}$/;
     if (!passwordPattern.test(password)) {
       setErrorPassword('Password format invalid');
       return false;
@@ -100,9 +103,10 @@ const SignUpScreen = () => {
   useEffect(() => {
     setIsValid(
       firstNameValidation() &&
-      emailValidation() &&
-      passwordValidation() &&
-      agree1Validation());
+        emailValidation() &&
+        passwordValidation() &&
+        agree1Validation(),
+    );
   }, [firstName, email, password, agree1]);
 
   const handleSignUp = () => {
@@ -112,10 +116,8 @@ const SignUpScreen = () => {
       passwordValidation() &&
       agree1Validation();
 
-
     setIsSubmitted(true);
     setIsValid(isValidFields);
-
 
     if (isValidFields) {
       //Add to database
@@ -129,26 +131,20 @@ const SignUpScreen = () => {
         }, 3000);
       }, 3000);
     }
-
   };
-
 
   useEffect(() => {
     if (isSubmitted) {
       setIsValid(
         firstNameValidation() &&
-        emailValidation() &&
-        passwordValidation() &&
-        agree1Validation()
+          emailValidation() &&
+          passwordValidation() &&
+          agree1Validation(),
       );
     }
   }, [isSubmitted, firstName, email, password, agree1]);
 
-
-  const handleGoogleSignUp = () => {
-
-  };
-
+  const handleGoogleSignUp = () => {};
 
   return (
     <View style={styles.container}>
@@ -177,9 +173,11 @@ const SignUpScreen = () => {
             secureTextEntry={secureTextEntry}
             style={styles.input}
           />
-          <TouchableOpacity style={styles.passwordIconContainer} onPress={togglePasswordVisibility}>
+          <TouchableOpacity
+            style={styles.passwordIconContainer}
+            onPress={togglePasswordVisibility}>
             <Image
-              style={styles.eye}
+              style={eyeIconStyles}
               source={require('../assets/ojo.png')}
             />
           </TouchableOpacity>
@@ -203,12 +201,23 @@ const SignUpScreen = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <PrimaryButton title="Sign Up" onPress={handleSignUp} isValid={isValid} />
+        <PrimaryButton
+          title="Sign Up"
+          onPress={handleSignUp}
+          isValid={isValid}
+        />
         <Text style={styles.textOr}>or</Text>
-        <PrimaryButton title="Sign Up with Google" onPress={handleGoogleSignUp} isValid={true} />
-      </View>
-      <View style={styles.googleIconContainer}>
-        <Image style={styles.google} source={require('../assets/google.png')} />
+        <PrimaryButton
+          title="Sign Up with Google"
+          onPress={handleGoogleSignUp}
+          isValid={isValid}
+        />
+        <View style={styles.googleIconContainer}>
+          <Image
+            style={styles.google}
+            source={require('../assets/google.png')}
+          />
+        </View>
       </View>
       <View>
         <Text style={styles.textLogIn}>
@@ -223,8 +232,8 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     marginTop: 30,
   },
   inputContainer: {
@@ -273,11 +282,9 @@ const styles = StyleSheet.create({
     tintColor: '#2774D5',
   },
   checkboxContainer: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    marginRight: 105,
     marginTop: 20,
     fontSize: 14,
+    marginLeft: '5%',
   },
   buttonContainer: {
     marginTop: 10,

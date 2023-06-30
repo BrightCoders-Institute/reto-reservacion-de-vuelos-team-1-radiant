@@ -20,10 +20,11 @@ export interface TitleProps {
   children: React.ReactNode;
 }
 
-export interface PrimaryButtonProps {
+export interface ButtonProps {
   title: string;
-  onPress: () => void;
-  isValid: boolean;
+  onPress?: () => void;
+  isValid?: boolean;
+  imgSource?: any;
 }
 
 export interface LoadingModalProps {

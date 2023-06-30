@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
         color: '#2D7BDD',
         fontWeight: 'bold',
         marginBottom: 30,
-        marginLeft: '5%',
     },
 });
 

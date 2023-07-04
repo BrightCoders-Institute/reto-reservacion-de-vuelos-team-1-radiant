@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { LoadingModalProps } from '../interfaces/interfaces';
+import styles from '../appTheme/AppTheme';
 
 
 const LoadingModal = ({ isLoading, isRegistered }: LoadingModalProps) => (
@@ -34,51 +35,6 @@ const LoadingModal = ({ isLoading, isRegistered }: LoadingModalProps) => (
         </View>
     </Modal>
 );
-
-const styles = StyleSheet.create({
-    modalContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContent: {
-        backgroundColor: '#21252b',
-        padding: 20,
-        width: 150,
-        height: 150,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    loadingContainer: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-    },
-    successContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    activityIndicator: {
-        transform: [{ scale: 2.5 }],
-        marginVertical: 25,
-    },
-    iconContainer: {
-        width: 100,
-        height: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    icon: {
-        marginBottom: 15,
-    },
-    signUpModalText: {
-        color: '#2D7BDD',
-        textAlign: 'center',
-        marginTop: 20,
-    },
-});
 
 
 export default LoadingModal;

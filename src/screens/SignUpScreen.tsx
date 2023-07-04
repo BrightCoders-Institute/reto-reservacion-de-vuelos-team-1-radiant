@@ -8,7 +8,6 @@ import {
   ImageSourcePropType,
   KeyboardAvoidingView,
 } from 'react-native';
-
 import LoadingModal from '../components/LoadingModal';
 import InputField from '../components/InputField';
 import Title from '../components/Title';
@@ -16,9 +15,12 @@ import CustomCheckbox from '../components/CustomCheckbox';
 import { ButtonPrimary } from '../components/ButtonPrimary';
 import { FIREBASE_AUTH } from '../database/firebaseconfig';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { StackScreenProps } from '@react-navigation/stack';
+import styles from '../appTheme/AppTheme';
 
+interface Props extends StackScreenProps<any, any>{};
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }: Props) => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -199,10 +201,10 @@ const SignUpScreen = () => {
           />
         </TouchableOpacity>
       </View>
-      <Text>
+      <Text >
         Use 8 or more characthers with a mix of letters, numbers, and symbols.
       </Text>
-      <View style={styles.checkboxContainer}>
+      <View style={styles.mainCheckboxContainer}>
         <CustomCheckbox
           value={agree1}
           onValueChange={value => setAgree1(value)}
@@ -221,69 +223,12 @@ const SignUpScreen = () => {
       <Text style={styles.textOr}>or</Text>
       <ButtonPrimary title="Sign Up With Google" imgSource={googleLogo} onPress={handleGoogleSignUp} isValid={true} />
       <Text style={styles.textLogIn}>
-        Already have an account? <Text style={styles.underline}>Log in</Text>
+        Already have an account? <Text style={styles.underline} onPress={ () => navigation.navigate('LogInScreen') }>Log in</Text>
       </Text>
       <LoadingModal isLoading={isLoading} isRegistered={isRegistered} />
     </KeyboardAvoidingView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 0,
-    marginTop: 30,
-  },
-  inputFocused: {
-    borderColor: '#2774D5',
-  },
-  passwordIconContainer: {
-    position: 'absolute',
-    left: '90%',
-    bottom: '35%',
-  },
-  eye: {
-    width: 25,
-    height: 25,
-  },
-  desactivedEye: {
-    tintColor: '#A0A0A0',
-  },
-  activeEye: {
-    tintColor: '#2774D5',
-  },
-  checkboxContainer: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    marginTop: 20,
-    fontSize: 14,
-  },
-  textOr: {
-    marginLeft: '50%',
-    marginTop: 5,
-    marginBottom: 5,
-  },
-  googleIconContainer: {
-    left: '10%',
-    bottom: '43%',
-  },
-  google: {
-    width: 25,
-    height: 25,
-  },
-  textLogIn: {
-    marginTop: 40,
-    fontSize: 16,
-    alignSelf: 'center',
-  },
-  underline: {
-    textDecorationLine: 'underline',
-    color: '#2774D5',
-  },
-  error: {
-    color: 'red',
-    fontSize: 15,
-    marginLeft: 10,
-  },
-});
 
 export default SignUpScreen;

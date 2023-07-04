@@ -10,8 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { LoadingModalProps } from '../interfaces/interfaces';
 import styles from '../appTheme/AppTheme';
 
-
-const LoadingModal = ({ isLoading, isRegistered }: LoadingModalProps) => (
+const LoadingModal = ({ isLoading, isRegistered, loadingTitle, successTitle }: LoadingModalProps) => (
 
     <Modal visible={isLoading || isRegistered} transparent>
         <View style={styles.modalContainer}>
@@ -20,7 +19,7 @@ const LoadingModal = ({ isLoading, isRegistered }: LoadingModalProps) => (
                     <View style={styles.loadingContainer}>
                         <ActivityIndicator style={styles.activityIndicator} size="large" color="#2D7BDD" />
                         <View>
-                            <Text style={styles.signUpModalText}>Signing Up...</Text>
+                            <Text style={styles.signUpModalText}>{ loadingTitle }</Text>
                         </View>
                     </View>
                 ) : (
@@ -28,7 +27,7 @@ const LoadingModal = ({ isLoading, isRegistered }: LoadingModalProps) => (
                         <View style={styles.iconContainer}>
                             <Icon name="checkmark-circle-outline" size={100} color="#2D7BDD" />
                         </View>
-                        <Text style={styles.signUpModalText}>Signed Up</Text>
+                        <Text style={styles.signUpModalText}>{ successTitle }</Text>
                     </View>
                 )}
             </View>

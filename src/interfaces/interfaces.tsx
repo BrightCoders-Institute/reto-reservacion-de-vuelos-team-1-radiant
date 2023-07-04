@@ -30,4 +30,6 @@ export interface ButtonProps {
 export interface LoadingModalProps {
   isLoading: boolean;
   isRegistered: boolean;
+  loadingTitle: string;
+  successTitle: string;
 }

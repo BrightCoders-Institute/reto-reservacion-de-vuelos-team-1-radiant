@@ -13,6 +13,8 @@ import InputField from '../components/InputField';
 import Title from '../components/Title';
 import CustomCheckbox from '../components/CustomCheckbox';
 import { ButtonPrimary } from '../components/ButtonPrimary';
+import { FIREBASE_AUTH } from '../database/firebaseconfig';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { StackScreenProps } from '@react-navigation/stack';
 import styles from '../appTheme/AppTheme';
 
@@ -24,6 +26,7 @@ const SignUpScreen = ({ navigation }: Props) => {
   const [password, setPassword] = useState('');
   const [agree1, setAgree1] = useState(false);
   const [agree2, setAgree2] = useState(false);
+  const auth = FIREBASE_AUTH;
 
   //States for error messages
   const [errorFirstName, setErrorFirstName] = useState('');
@@ -108,7 +111,19 @@ const SignUpScreen = ({ navigation }: Props) => {
       agree1Validation());
   }, [firstName, email, password, agree1]);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
+
+    setIsLoading(true);
+    try {
+      const response = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(response);
+    } catch (error: any) {
+      console.log(error);
+      alert('Sign in failed: ' + error.message);
+    } finally {
+      setIsLoading(false);
+    }
+
     const isValidFields =
       firstNameValidation() &&
       emailValidation() &&

@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
   Image,
   ImageSourcePropType,
   KeyboardAvoidingView,
@@ -17,6 +16,7 @@ import { FIREBASE_AUTH } from '../database/firebaseconfig';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { StackScreenProps } from '@react-navigation/stack';
 import styles from '../appTheme/AppTheme';
+import { firstNameValidation, emailValidation, passwordValidation, agree1Validation } from '../helpers/formValidations';
 
 interface Props extends StackScreenProps<any, any>{};
 
@@ -47,68 +47,15 @@ const SignUpScreen = ({ navigation }: Props) => {
 
 
   //Validation Function for each field
-  const firstNameValidation = () => {
-    if (!firstName) {
-      setErrorFirstName('First Name is required');
-      return false;
-    } else {
-      setErrorFirstName('');
-      return true;
-    }
-  };
-
-  const emailValidation = () => {
-    if (!email) {
-      setErrorEmail('Email is required');
-      return false;
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      setErrorEmail('Please enter a valid email address');
-      return false;
-    }
-
-    setErrorEmail('');
-    return true;
-  };
-
-  const passwordValidation = () => {
-    if (!password) {
-      setErrorPassword('Password is required');
-      return false;
-    }
-
-    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&^#])[A-Za-z\d@$!%*?&^#]{8,}$/;
-    if (!passwordPattern.test(password)) {
-      setErrorPassword('Password format invalid');
-      return false;
-    }
-    //Rest of password validations
-
-    setErrorPassword('');
-    return true;
-  };
-
-  const agree1Validation = () => {
-    if (!agree1) {
-      setErrorAgree1('You must agree to the Terms and Privacy Policy');
-      return false;
-    }
-
-    setErrorAgree1('');
-    return true;
-  };
-
   const [isValid, setIsValid] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     setIsValid(
-      firstNameValidation() &&
-      emailValidation() &&
-      passwordValidation() &&
-      agree1Validation());
+      firstNameValidation(firstName, setErrorFirstName) &&
+      emailValidation(email, setErrorEmail) &&
+      passwordValidation(password, setErrorPassword) &&
+      agree1Validation(agree1, setErrorAgree1));
   }, [firstName, email, password, agree1]);
 
   const handleSignUp = async () => {
@@ -125,39 +72,39 @@ const SignUpScreen = ({ navigation }: Props) => {
     }
 
     const isValidFields =
-      firstNameValidation() &&
-      emailValidation() &&
-      passwordValidation() &&
-      agree1Validation();
-
-
-    setIsSubmitted(true);
-    setIsValid(isValidFields);
-
-
-    if (isValidFields) {
-      //Add to database
-      setIsLoading(true);
-
-      setTimeout(() => {
-        setIsLoading(false);
-        setIsRegistered(true);
+ firstNameValidation(firstName, setErrorFirstName) &&
+      emailValidation(email, setErrorEmail) &&
+      passwordValidation(password, setErrorPassword) &&
+      agree1Validation(agree1, setErrorAgree1);
+      
+      
+      setIsSubmitted(true);
+      setIsValid(isValidFields);
+      
+      
+      if (isValidFields) {
+        //Add to database
+        setIsLoading(true);
+        
         setTimeout(() => {
-          setIsRegistered(false);
+          setIsLoading(false);
+          setIsRegistered(true);
+          setTimeout(() => {
+            setIsRegistered(false);
+          }, 3000);
         }, 3000);
-      }, 3000);
-    }
-
-  };
-
-
-  useEffect(() => {
-    if (isSubmitted) {
-      setIsValid(
-        firstNameValidation() &&
-        emailValidation() &&
-        passwordValidation() &&
-        agree1Validation()
+      }
+      
+    };
+    
+    
+    useEffect(() => {
+      if (isSubmitted) {
+        setIsValid(
+      firstNameValidation(firstName, setErrorFirstName) &&
+      emailValidation(email, setErrorEmail) &&
+      passwordValidation(password, setErrorPassword) &&
+      agree1Validation(agree1, setErrorAgree1)
       );
     }
   }, [isSubmitted, firstName, email, password, agree1]);
@@ -225,7 +172,7 @@ const SignUpScreen = ({ navigation }: Props) => {
       <Text style={styles.textLogIn}>
         Already have an account? <Text style={styles.underline} onPress={ () => navigation.navigate('LogInScreen') }>Log in</Text>
       </Text>
-      <LoadingModal isLoading={isLoading} isRegistered={isRegistered} />
+      <LoadingModal isLoading={isLoading} isRegistered={isRegistered} loadingTitle='Signing Up...' successTitle='Signed Up Succesfully'/>
     </KeyboardAvoidingView>
   );
 };

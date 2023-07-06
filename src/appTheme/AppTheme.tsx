@@ -225,6 +225,46 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 30,
   },
+
+  //SUBTITLE STYLES
+  subTitle:{
+    color: 'black',
+    fontSize: 35,
+    fontWeight: 'bold'
+  },
+  containerSubTitle: {
+    paddingTop: 40,
+    paddingBottom: 30,
+  },
+
+  // ORIGIN DROPDOWN STYLES
+  pickerStyle: {
+    // backgroundColor: 'white',
+    borderBottomColor:'black',
+    borderBottomWidth: 1,
+    borderRadius: 5,
+  },
+  pickerItemStyle:{
+      color: 'lightgray',
+  },
+
+
+  //FLIGHT INFO
+  flightInfoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+    marginBottom: 20,
+    paddingVertical: 20,
+  },
+  flightInfoAbbrev: {
+    fontWeight: '700',
+    fontSize: 25,
+    color: '#000'
+  },
+  
 });
 
 export default styles;

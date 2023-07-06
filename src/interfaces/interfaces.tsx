@@ -33,3 +33,13 @@ export interface LoadingModalProps {
   loadingTitle: string;
   successTitle: string;
 }
+
+// export interface OriginDropDownProps {
+//   selectedCity: string;
+//   onCitySelect: (city: string) => void;
+//   style?: ViewStyle;
+// }
+
+export interface SubTitleProps {
+  text: string;
+}

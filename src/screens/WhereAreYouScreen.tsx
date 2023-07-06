@@ -1,11 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View } from 'react-native'
-import Title from '../components/Title'
+import { OriginDropDown } from '../components/OriginDropDown'
+import { ButtonPrimary } from '../components/ButtonPrimary'
+import styles from '../appTheme/AppTheme';
+import FlightInfo from '../components/FlightInfo';
+import { SubTitle } from '../components/SubTitle';
+
 
 export const WhereAreYouScreen = () => {
   return (
-    <View>
-        <Title>Welcome to Jurassic Park!</Title>
+    <View style={styles.container}>
+      <FlightInfo />
+      <SubTitle text='Where are you now?'/>
+        <OriginDropDown
+          // selectedCity={selectedCity}
+          // setSelectedCity={setSelectedCity}
+        />
+        <ButtonPrimary title="Next" />
     </View>
-  )
-}
+  );
+};

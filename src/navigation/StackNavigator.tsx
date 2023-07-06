@@ -19,8 +19,8 @@ export const StackNavigator = () => {
             marginHorizontal: 'auto',
           }}}
           >
-          <Stack.Screen name="SignUpScreen" options={{headerShown: false}} component={SignUpScreen} />
-          <Stack.Screen name="LogInScreen" options={{headerShown: false}} component={LogInScreen} />
+          {/* <Stack.Screen name="SignUpScreen" options={{headerShown: false}} component={SignUpScreen} />
+          <Stack.Screen name="LogInScreen" options={{headerShown: false}} component={LogInScreen} /> */}
           <Stack.Screen name="WhereAreYouScreen" options={{headerShown: false}} component={ WhereAreYouScreen } />
         </Stack.Navigator>
       );

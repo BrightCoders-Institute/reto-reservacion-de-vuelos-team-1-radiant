@@ -233,15 +233,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   containerSubTitle: {
-    paddingTop: 40,
-    paddingBottom: 30,
+    marginTop: 40,
+    marginBottom: 30,
   },
 
   // ORIGIN DROPDOWN STYLES
   pickerStyle: {
     // backgroundColor: 'white',
-    borderBottomColor:'black',
-    borderBottomWidth: 1,
+    borderBottomColor:'grey',
+    borderBottomWidth: 0.5,
     borderRadius: 5,
   },
   pickerItemStyle:{
@@ -250,19 +250,39 @@ const styles = StyleSheet.create({
 
 
   //FLIGHT INFO
+  flightinfoMainContainer: {
+  },
   flightInfoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingVertical: 10,
     borderStyle: 'solid',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderBottomColor: 'grey',
-    marginBottom: 20,
-    paddingVertical: 20,
+    marginBottom: 10,
+  },
+  flightInfoIconContainer: {
+    justifyContent: 'center',
   },
   flightInfoAbbrev: {
     fontWeight: '700',
     fontSize: 25,
-    color: '#000'
+    color: '#000',
+    marginBottom: 5,
+  },
+  passengerInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  passengerInfoText: {
+    color: '#000',
+  },
+  
+  //WERE ARE YOU NOW STYLES
+  whereAreYouContainer:{
+    // justifyContent: 'space-between',
+    flex: 1,
+
   },
   
 });

@@ -5,17 +5,26 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const FlightInfo = () => {
   return (
-    <View style={styles.flightInfoContainer}>
-      <View>
-        <Text style={styles.flightInfoAbbrev}>AMS</Text>
-        <Text>Netherlands</Text>
+    <View style={styles.flightinfoMainContainer}>
+      <View style={styles.flightInfoContainer}>
+        <View>
+          <Text style={styles.flightInfoAbbrev}>AMS</Text>
+          <Text>Netherlands</Text>
+        </View>
+
+        <View style={styles.flightInfoIconContainer}>
+          <Icon name={'airplane'} size={25} color={'#2D7BDD'} />
+        </View>
+
+        <View>
+          <Text style={styles.flightInfoAbbrev}>PAR</Text>
+          <Text>France</Text>
+        </View>
       </View>
 
-      <Icon name={'airplane'} size={25} color={'#2D7BDD'} />
-
-      <View>
-        <Text style={styles.flightInfoAbbrev}>PAR</Text>
-        <Text>France</Text>
+      <View style={styles.passengerInfo}>
+        <Text style={styles.passengerInfoText}>September 3, 2020</Text>
+        <Text style={styles.passengerInfoText}>2 passengers</Text>
       </View>
     </View>
   );

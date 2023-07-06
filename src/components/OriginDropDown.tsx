@@ -3,12 +3,10 @@ import { View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import styles from '../appTheme/AppTheme';
 import flightsData from '../data/flightsData.json';
-import Title from './Title';
-// import { OriginDropDownProps } from '../interfaces/interfaces';
 
 
 
-export const OriginDropDown = (/*{ selectedCity, onCitySelect }: OriginDropDownProps*/) => {
+export const OriginDropDown = () => {
   const [selectedOption, setSelectedOption] = useState('');
 
   return (

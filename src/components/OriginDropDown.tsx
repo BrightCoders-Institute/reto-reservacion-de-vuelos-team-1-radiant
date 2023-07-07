@@ -4,19 +4,28 @@ import { Picker } from '@react-native-picker/picker';
 import styles from '../appTheme/AppTheme';
 import flightsData from '../data/flightsData.json';
 
+interface SelectFlightsProps {
+  onSelectFlight: (flight: any) => void;
+  
+}
 
-
-export const OriginDropDown = () => {
+export const OriginDropDown = ({ onSelectFlight }: SelectFlightsProps) => {
   const [selectedOption, setSelectedOption] = useState('');
+
+  const handleValueChange = (value: any) => {
+    setSelectedOption(value)
+
+    const selectedFlight = flightsData.flights.find( (flight) => flight.id === value );
+
+    onSelectFlight(selectedFlight);
+  };
 
   return (
     <View style={styles.pickerStyle}>
-      
       <Picker
-        // style={ styles.pickerStyle }
          selectedValue={selectedOption}
          placeholder='Select Location'
-        onValueChange={(value) => setSelectedOption(value)}
+        onValueChange={handleValueChange}
       >
         <Picker.Item style={styles.pickerItemStyle} label="Select Location" value={null} />
         {flightsData.flights.map((flight) => {

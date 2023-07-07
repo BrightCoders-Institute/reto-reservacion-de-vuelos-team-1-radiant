@@ -227,10 +227,10 @@ const styles = StyleSheet.create({
   },
 
   //SUBTITLE STYLES
-  subTitle:{
+  subTitle: {
     color: 'black',
     fontSize: 35,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   containerSubTitle: {
     marginTop: 40,
@@ -240,18 +240,16 @@ const styles = StyleSheet.create({
   // ORIGIN DROPDOWN STYLES
   pickerStyle: {
     // backgroundColor: 'white',
-    borderBottomColor:'grey',
+    borderBottomColor: 'grey',
     borderBottomWidth: 0.5,
     borderRadius: 5,
   },
-  pickerItemStyle:{
-      color: 'lightgray',
+  pickerItemStyle: {
+    color: 'lightgray',
   },
-
 
   //FLIGHT INFO
-  flightinfoMainContainer: {
-  },
+  flightinfoMainContainer: {},
   flightInfoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -277,14 +275,11 @@ const styles = StyleSheet.create({
   passengerInfoText: {
     color: '#000',
   },
-  
-  //WERE ARE YOU NOW STYLES
-  whereAreYouContainer:{
-    // justifyContent: 'space-between',
-    flex: 1,
 
+  //WERE ARE YOU NOW STYLES
+  whereAreYouContainer: {
+    flex: 1,
   },
-  
 });
 
 export default styles;

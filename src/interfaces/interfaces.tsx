@@ -25,6 +25,7 @@ export interface ButtonProps {
   onPress?: () => void;
   isValid?: boolean;
   imgSource?: any;
+
 }
 
 export interface LoadingModalProps {

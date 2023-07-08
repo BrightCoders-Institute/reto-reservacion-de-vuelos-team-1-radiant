@@ -4,9 +4,10 @@ import { ButtonProps } from '../interfaces/interfaces';
 import styles from '../appTheme/AppTheme';
 
 
-export const ButtonPrimary = ({ title, onPress, imgSource, isValid}: ButtonProps) => {
+export const ButtonPrimary = ({ title, onPress, imgSource, isValid, disabled }: ButtonProps) => {
     return (
         <TouchableOpacity
+            disabled={disabled}
             style={[
                 styles.buttonContainer,
                 isValid ? styles.primaryButtonValid : styles.primaryButtonInvalid,

@@ -5,37 +5,35 @@ import styles from '../appTheme/AppTheme';
 import flightsData from '../data/flightsData.json';
 
 interface SelectFlightsProps {
-  onSelectFlight: (flight: any) => void;
-  
+  onSelectFlight: (flight: any) => void
 }
 
 export const OriginDropDown = ({ onSelectFlight }: SelectFlightsProps) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleValueChange = (value: any) => {
-    setSelectedOption(value)
+    setSelectedOption(value);
 
-    const selectedFlight = flightsData.flights.find( (flight) => flight.id === value );
-
+    const selectedFlight = flightsData.flights.find((flight) => flight.id === value);
     onSelectFlight(selectedFlight);
   };
 
   return (
     <View style={styles.pickerStyle}>
       <Picker
-         selectedValue={selectedOption}
-         placeholder='Select Location'
+        selectedValue={selectedOption}
+        placeholder="Select Location"
         onValueChange={handleValueChange}
       >
         <Picker.Item style={styles.pickerItemStyle} label="Select Location" value={null} />
         {flightsData.flights.map((flight) => {
-          return(
-            <Picker.Item 
-            key={flight.id}
-            label={`${flight.cityName}, ${flight.countryName}`} 
-            value={flight.id} />
-            );
-          })}
+          return (
+            <Picker.Item
+              key={flight.id}
+              label={`${flight.cityName}, ${flight.countryName}`}
+              value={flight.id} />
+          );
+        })}
       </Picker>
     </View>
   );

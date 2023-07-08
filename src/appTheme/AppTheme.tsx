@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+import { flightInfoHeight, rest } from '../helpers/DataDestinyDimensions';
+
 
 
 const styles = StyleSheet.create({
@@ -200,7 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   activityIndicator: {
-    transform: [{scale: 2.5}],
+    transform: [{ scale: 2.5 }],
     marginVertical: 25,
   },
   iconContainer: {
@@ -250,22 +252,34 @@ const styles = StyleSheet.create({
 
   //FLIGHT INFO
   flightinfoMainContainer: {},
+
   flightInfoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 10,
+    marginBottom: 10,
+  },
+  alignRight: {
+    alignItems: 'flex-end',
+  },
+  flightInfoTextContainer: {
+    width: '50%',
     borderStyle: 'solid',
     borderBottomWidth: 0.5,
     borderBottomColor: 'grey',
-    marginBottom: 10,
   },
   flightInfoIconContainer: {
-    justifyContent: 'center',
+    position: 'absolute',
+    top: '60%',
+    left: '50%',
+    transform: [{ translateX: -12.5 }, { translateY: -12.5 }], //Move Y
   },
   flightInfoAbbrev: {
     fontWeight: '700',
     fontSize: 25,
     color: '#000',
+  },
+  flightInfoCountry: {
     marginBottom: 5,
   },
   passengerInfo: {
@@ -274,6 +288,20 @@ const styles = StyleSheet.create({
   },
   passengerInfoText: {
     color: '#000',
+  },
+
+  // BOOKING SCREENS
+  flightBookingInfo: {
+    flex: 0.3,
+    maxHeight: flightInfoHeight,
+  },
+  selectionBookingField: {
+    flex: 0.7,
+    maxHeight: rest,
+  },
+
+  bookingScreensButton: {
+    marginBottom: '15%',
   },
 
   //WERE ARE YOU NOW STYLES

@@ -1,56 +1,63 @@
-import React, { useState } from 'react'
-import { Dimensions, Text, View } from 'react-native'
-import { SubTitle } from '../components/SubTitle'
-import { StackScreenProps } from '@react-navigation/stack'
-import styles from '../appTheme/AppTheme'
-import FlightInfo from '../components/FlightInfo'
-import { OriginDropDown } from '../components/OriginDropDown'
-import { ButtonPrimary } from '../components/ButtonPrimary'
-
-interface Props extends StackScreenProps<any, any>{};
-
-export const FlightDestinationScreen = ({navigation} : any) => {
-  const screenHeight = Dimensions.get('window').height;
-  const flightInfoHeight = 0.3 * screenHeight;
-  const rest = screenHeight - flightInfoHeight;
-
-  const [selectedFlight, setSelectedFlight] = useState(null);
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { SubTitle } from '../components/SubTitle';
+import { StackScreenProps } from '@react-navigation/stack';
+import styles from '../appTheme/AppTheme';
+import FlightInfo from '../components/FlightInfo';
+import { OriginDropDown } from '../components/OriginDropDown';
+import { ButtonPrimary } from '../components/ButtonPrimary';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
-  const handleSelectFlight = (flight: any) => { 
-    setSelectedFlight(flight);
-  }
 
-  
+interface Props extends StackScreenProps<any, any> { }
+
+export const FlightDestinationScreen = ({ navigation, route }: Props) => {
+
+  const [selectedFlightOrigin, setSelectedFlightOrigin] = useState(route.params?.selectedFlight || null);
+  const [selectedFlightDestination, setSelectedFlightDestination] = useState(null);
+
+  const handleSelectFlightDestination = (flight: any) => {
+    setSelectedFlightDestination(flight);
+  };
+
+
   return (
     <View style={styles.whereAreYouContainer}>
-      <View style={{flex: 0.3, maxHeight: flightInfoHeight}}>
-        <View>
+      <View style={styles.flightBookingInfo}>
+        <View style={styles.flightInfoContainer}>
 
-        {selectedFlight ? <FlightInfo selectedFlight={selectedFlight} /> 
-          : null}
-        <View>
+          <View style={styles.flightInfoTextContainer}>
+            <FlightInfo selectedFlight={selectedFlightOrigin} />
+          </View>
 
-        </View>
+          <View style={styles.flightInfoIconContainer}>
+            <Icon name={'airplane'} size={25} color={'#2D7BDD'} />
+          </View>
+
+          {selectedFlightDestination ?
+            <View style={styles.flightInfoTextContainer}>
+              <FlightInfo selectedFlight={selectedFlightDestination} alignRight={true} />
+            </View>
+            : null}
 
         </View>
       </View>
 
-      
-
-      <View style={{flex: 0.7, maxHeight: rest}}>
-        <SubTitle text="Where are you now?" /> 
-        <OriginDropDown onSelectFlight={handleSelectFlight} />
-      </View>
-
-      {
-      /* <View style={{flex: 0.7, maxHeight: rest}}>
+      <View style={styles.selectionBookingField}>
         <SubTitle text="Where will you be flying to?" />
-      </View> */}
+        <OriginDropDown
+          onSelectFlight={handleSelectFlightDestination} />
+      </View>
 
-      <View style={{marginBottom: '15%'}}>
-        <ButtonPrimary title="Next" onPress={() => navigation.navigate('WhereAreYouScreen')}/>
+      <View style={styles.bookingScreensButton}>
+        <ButtonPrimary
+          title="Next"
+          isValid={selectedFlightDestination ? true : false}
+          disabled={selectedFlightDestination ? false : true}
+          onPress={() => navigation.navigate('WhereAreYouScreen')} />
       </View>
     </View>
   );
-}
+};
+

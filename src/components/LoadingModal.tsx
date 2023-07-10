@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    Modal,
-    ActivityIndicator,
-} from 'react-native';
+import { View, Text, Modal,ActivityIndicator, } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { LoadingModalProps } from '../interfaces/interfaces';
 import styles from '../appTheme/AppTheme';

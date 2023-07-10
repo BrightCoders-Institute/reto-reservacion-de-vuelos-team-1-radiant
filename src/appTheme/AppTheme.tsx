@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     tintColor: '#2774D5',
   },
   mainCheckboxContainer: {
-    // flexDirection: 'column',
     marginVertical: 15,
     fontSize: 14,
   },
@@ -241,7 +240,6 @@ const styles = StyleSheet.create({
 
   // ORIGIN DROPDOWN STYLES
   pickerStyle: {
-    // backgroundColor: 'white',
     borderBottomColor: 'grey',
     borderBottomWidth: 0.5,
     borderRadius: 5,

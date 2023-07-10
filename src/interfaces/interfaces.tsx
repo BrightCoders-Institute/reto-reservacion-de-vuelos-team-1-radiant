@@ -36,12 +36,14 @@ export interface LoadingModalProps {
   successTitle: string;
 }
 
-// export interface OriginDropDownProps {
-//   selectedCity: string;
-//   onCitySelect: (city: string) => void;
-//   style?: ViewStyle;
-// }
-
 export interface SubTitleProps {
   text: string;
+}
+
+export interface SelectFlightsProps {
+  onSelectFlight: (flight: any) => void
+}
+export interface FlightProps {
+  selectedFlight: any;
+  alignRight?: boolean; //Just for align the destination info on the right
 }

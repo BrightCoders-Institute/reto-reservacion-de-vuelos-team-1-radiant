@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Modal,ActivityIndicator, } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { LoadingModalProps } from '../interfaces/interfaces';
-import styles from '../appTheme/AppTheme';
+import { LoadingModalProps } from '../../interfaces/interfaces';
+import styles from './styles';
 
 const LoadingModal = ({ isLoading, isRegistered, loadingTitle, successTitle }: LoadingModalProps) => (
 

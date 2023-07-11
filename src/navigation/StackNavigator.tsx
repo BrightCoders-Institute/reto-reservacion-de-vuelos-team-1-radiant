@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-//import SignUpScreen from '../screens/SignUpScreen';
-//import { LogInScreen } from '../screens/LogInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import { LogInScreen } from '../screens/LogInScreen';
 import { Dimensions } from 'react-native';
 import { WhereAreYouScreen } from '../screens/WhereAreYouScreen';
 import { FlightDestinationScreen } from '../screens/FlightDestinationScreen';
@@ -23,8 +23,8 @@ export const StackNavigator = () => {
         },
       }}
     >
-      {/* <Stack.Screen name="SignUpScreen" options={{headerShown: false}} component={SignUpScreen} />
-          <Stack.Screen name="LogInScreen" options={{headerShown: false}} component={LogInScreen} /> */}
+      <Stack.Screen name="SignUpScreen" options={{headerShown: false}} component={SignUpScreen} />
+      <Stack.Screen name="LogInScreen" options={{headerShown: false}} component={LogInScreen} />
       <Stack.Screen name="WhereAreYouScreen" options={{ headerShown: false }} component={WhereAreYouScreen} />
       <Stack.Screen name="FlightDestinationScreen" options={{ headerShown: false }} component={FlightDestinationScreen} />
     </Stack.Navigator>

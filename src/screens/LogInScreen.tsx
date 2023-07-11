@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ImageSourcePropType, KeyboardAvoidingView } from 'react-native';
-import Title from '../components/Title';
-import InputField from '../components/InputField';
-import { ButtonPrimary } from '../components/ButtonPrimary';
+import Title from '../components/Title/Title';
+import InputField from '../components/InputField/InputField';
+import { ButtonPrimary } from '../components/ButtonPrimary/ButtonPrimary';
 import styles from '../appTheme/AppTheme';
 import { FIREBASE_AUTH } from '../database/firebaseconfig';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 import { StackScreenProps } from '@react-navigation/stack';
 import { emailValidation, passwordValidation } from '../helpers/formValidations';
-import LoadingModal from '../components/LoadingModal';
+import LoadingModal from '../components/LoadingModal/LoadingModal';
 
 
 interface Props extends StackScreenProps<any, any> { }

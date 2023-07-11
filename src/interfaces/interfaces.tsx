@@ -45,5 +45,5 @@ export interface SelectFlightsProps {
 }
 export interface FlightProps {
   selectedFlight: any;
-  alignRight?: boolean; //Just for align the destination info on the right
+  alignRight?: boolean; 
 }

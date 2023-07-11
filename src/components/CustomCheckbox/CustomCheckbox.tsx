@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { CheckboxProps } from '../interfaces/interfaces';
-import styles from '../appTheme/AppTheme';
+import { CheckboxProps } from '../../interfaces/interfaces';
+import styles from './styles';
 
 const CustomCheckbox = ({ value, onValueChange, label, error }: CheckboxProps) => {
     const handleCheckboxChange = () => {
@@ -19,7 +19,7 @@ const CustomCheckbox = ({ value, onValueChange, label, error }: CheckboxProps) =
                     {value && (
                         <Image
                             style={styles.checkIcon}
-                            source={require('../assets/check.png')}
+                            source={require('../../assets/check.png')}
                         />
                     )}
                 </View>

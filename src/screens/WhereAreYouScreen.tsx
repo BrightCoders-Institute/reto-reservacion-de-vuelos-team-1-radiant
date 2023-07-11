@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { OriginDropDown } from '../components/OriginDropDown';
-import { ButtonPrimary } from '../components/ButtonPrimary';
+import { OriginDropDown } from '../components/OriginDropDown/OriginDropDown';
+import { ButtonPrimary } from '../components/ButtonPrimary/ButtonPrimary';
 import styles from '../appTheme/AppTheme';
-import FlightInfo from '../components/FlightInfo';
-import { SubTitle } from '../components/SubTitle';
+import FlightInfo from '../components/FlightInfo/FlightInfo';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { SubTitle } from '../components/SubTitle/SubTitle';
+
 
 
 export const WhereAreYouScreen = ({ navigation }: any) => {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity } from 'react-native';
-import { ButtonProps } from '../interfaces/interfaces';
-import styles from '../appTheme/AppTheme';
+import { ButtonProps } from '../../interfaces/interfaces';
+import { styles } from './styles';
+
 
 
 export const ButtonPrimary = ({ title, onPress, imgSource, isValid, disabled }: ButtonProps) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import styles from '../appTheme/AppTheme';
-import { FlightProps } from '../interfaces/interfaces';
+import { FlightProps } from '../../interfaces/interfaces';
+import { styles } from './styles';
 
 
 const FlightInfo = ({ selectedFlight, alignRight }: FlightProps) => {

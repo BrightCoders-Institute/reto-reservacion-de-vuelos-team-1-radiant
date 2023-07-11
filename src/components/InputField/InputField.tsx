@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { TextInput, View, Text } from 'react-native';
-import { InputProps } from '../interfaces/interfaces';
-import styles from '../appTheme/AppTheme';
+import { InputProps } from '../../interfaces/interfaces';
+import { styles } from './styles';
+
 
 const InputField = ({ label, value, onChangeText, error, secureTextEntry }: InputProps) => {
     const [isFocused, setIsFocused] = useState(false);

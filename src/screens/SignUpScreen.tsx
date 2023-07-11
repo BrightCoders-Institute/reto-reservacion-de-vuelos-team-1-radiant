@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ImageSourcePropType,
-  KeyboardAvoidingView,
-} from 'react-native';
-import LoadingModal from '../components/LoadingModal';
-import InputField from '../components/InputField';
-import Title from '../components/Title';
-import CustomCheckbox from '../components/CustomCheckbox';
-import { ButtonPrimary } from '../components/ButtonPrimary';
+import { View, Text, TouchableOpacity, Image, ImageSourcePropType, KeyboardAvoidingView } from 'react-native';
+import InputField from '../components/InputField/InputField';
+import Title from '../components/Title/Title';
+import { ButtonPrimary } from '../components/ButtonPrimary/ButtonPrimary';
 import { FIREBASE_AUTH } from '../database/firebaseconfig';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { StackScreenProps } from '@react-navigation/stack';
 import styles from '../appTheme/AppTheme';
 import { firstNameValidation, emailValidation, passwordValidation, agree1Validation } from '../helpers/formValidations';
+import LoadingModal from '../components/LoadingModal/LoadingModal';
+import CustomCheckbox from '../components/CustomCheckbox/CustomCheckbox';
 
 interface Props extends StackScreenProps<any, any>{};
 

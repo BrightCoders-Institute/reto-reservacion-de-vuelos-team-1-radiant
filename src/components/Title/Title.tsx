@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { TitleProps } from '../interfaces/interfaces';
-import styles from '../appTheme/AppTheme';
+import { Text, } from 'react-native';
+import { styles } from './styles';
+import { TitleProps } from '../../interfaces/interfaces';
+
 
 const Title = ({ children }: TitleProps) => (
     <Text style={styles.title}>{children}</Text>

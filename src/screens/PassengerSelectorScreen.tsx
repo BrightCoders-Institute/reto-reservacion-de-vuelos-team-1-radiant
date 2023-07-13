@@ -7,14 +7,13 @@ import { SubTitle } from '../components/SubTitle/SubTitle';
 import { ButtonPrimary } from '../components/ButtonPrimary/ButtonPrimary';
 import { PassengersSelector } from '../components/PassengersSelector/PassengersSelector';
 
-
 interface Props extends StackScreenProps<any, any> {}
 
 export const PassengerSelectorScreen = ({navigation, route}: Props) => {
 
 const [selectedPassengers, setSelectedPassengers] = useState(1);
 
-    const handleSelectPassengers = (index: any) => {
+    const handleSelectPassengers = (index: number) => {
         setSelectedPassengers(index);
     };
 

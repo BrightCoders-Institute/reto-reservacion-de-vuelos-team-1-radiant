@@ -51,3 +51,7 @@ export interface FlightProps {
 export interface CalendarComponentProps {
   onDateSelect: (date: string) => void;
 }
+
+export interface SelectPassengerProps {
+  onSelectPassengers:(index:number)=>void;
+}

@@ -10,6 +10,7 @@ import {CalendarComponent} from '../components/CalendarComponent/CalendarCompone
 interface Props extends StackScreenProps<any, any> {}
 
 export const CalendarScreen = ({navigation, route}: Props) => {
+  
   const [selectedFlightOrigin] = useState(
     route.params?.selectedFlightOrigin || null,
   );
@@ -41,7 +42,11 @@ export const CalendarScreen = ({navigation, route}: Props) => {
           title="Next"
           isValid={selectedDate ? true : false}
           disabled={selectedDate ? false : true}
-          onPress={() => navigation.navigate('WhereAreYouScreen')}
+          onPress={() => navigation.navigate('PassengerSelectorScreen', {  
+            selectedFlightOrigin: selectedFlightOrigin,
+            selectedFlightDestination: selectedFlightDestination,
+            selectedDate: selectedDate,
+          })}
         />
       </View>
     </View>

@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, ImageSourcePropType, KeyboardAvoidingView } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ImageSourcePropType,
+  KeyboardAvoidingView,
+} from 'react-native';
 import InputField from '../components/InputField/InputField';
 import Title from '../components/Title/Title';
-import { ButtonPrimary } from '../components/ButtonPrimary/ButtonPrimary';
-import { FIREBASE_AUTH } from '../database/firebaseconfig';
-import { createUserWithEmailAndPassword } from '@firebase/auth';
-import { StackScreenProps } from '@react-navigation/stack';
+import {ButtonPrimary} from '../components/ButtonPrimary/ButtonPrimary';
+import {FIREBASE_AUTH} from '../database/firebaseconfig';
+import {createUserWithEmailAndPassword} from '@firebase/auth';
+import {StackScreenProps} from '@react-navigation/stack';
 import styles from '../appTheme/AppTheme';
-import { firstNameValidation, emailValidation, passwordValidation, agree1Validation } from '../helpers/formValidations';
+import {
+  firstNameValidation,
+  emailValidation,
+  passwordValidation,
+  agree1Validation,
+} from '../helpers/formValidations';
 import LoadingModal from '../components/LoadingModal/LoadingModal';
 import CustomCheckbox from '../components/CustomCheckbox/CustomCheckbox';
 
-interface Props extends StackScreenProps<any, any>{};
+interface Props extends StackScreenProps<any, any> {}
 
-const SignUpScreen = ({ navigation }: Props) => {
+const SignUpScreen = ({navigation}: Props) => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +50,6 @@ const SignUpScreen = ({ navigation }: Props) => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-
   //Validation Function for each field
   const [isValid, setIsValid] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -46,16 +57,20 @@ const SignUpScreen = ({ navigation }: Props) => {
   useEffect(() => {
     setIsValid(
       firstNameValidation(firstName, setErrorFirstName) &&
-      emailValidation(email, setErrorEmail) &&
-      passwordValidation(password, setErrorPassword) &&
-      agree1Validation(agree1, setErrorAgree1));
+        emailValidation(email, setErrorEmail) &&
+        passwordValidation(password, setErrorPassword) &&
+        agree1Validation(agree1, setErrorAgree1),
+    );
   }, [firstName, email, password, agree1]);
 
   const handleSignUp = async () => {
-
     setIsLoading(true);
     try {
-      const response = await createUserWithEmailAndPassword(auth, email, password);
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
       console.log(response);
     } catch (error: any) {
       console.log(error);
@@ -65,47 +80,40 @@ const SignUpScreen = ({ navigation }: Props) => {
     }
 
     const isValidFields =
- firstNameValidation(firstName, setErrorFirstName) &&
-      emailValidation(email, setErrorEmail) &&
-      passwordValidation(password, setErrorPassword) &&
-      agree1Validation(agree1, setErrorAgree1);
-      
-      
-      setIsSubmitted(true);
-      setIsValid(isValidFields);
-      
-      
-      if (isValidFields) {
-        //Add to database
-        setIsLoading(true);
-        
-        setTimeout(() => {
-          setIsLoading(false);
-          setIsRegistered(true);
-          setTimeout(() => {
-            setIsRegistered(false);
-          }, 3000);
-        }, 3000);
-      }
-      
-    };
-    
-    
-    useEffect(() => {
-      if (isSubmitted) {
-        setIsValid(
       firstNameValidation(firstName, setErrorFirstName) &&
       emailValidation(email, setErrorEmail) &&
       passwordValidation(password, setErrorPassword) &&
-      agree1Validation(agree1, setErrorAgree1)
+      agree1Validation(agree1, setErrorAgree1);
+
+    setIsSubmitted(true);
+    setIsValid(isValidFields);
+
+    if (isValidFields) {
+      //Add to database
+      setIsLoading(true);
+
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsRegistered(true);
+        setTimeout(() => {
+          setIsRegistered(false);
+        }, 3000);
+      }, 3000);
+    }
+  };
+
+  useEffect(() => {
+    if (isSubmitted) {
+      setIsValid(
+        firstNameValidation(firstName, setErrorFirstName) &&
+          emailValidation(email, setErrorEmail) &&
+          passwordValidation(password, setErrorPassword) &&
+          agree1Validation(agree1, setErrorAgree1),
       );
     }
   }, [isSubmitted, firstName, email, password, agree1]);
 
-
-  const handleGoogleSignUp = () => {
-
-  };
+  const handleGoogleSignUp = () => {};
 
   const googleLogo: ImageSourcePropType = require('../assets/google.png');
 
@@ -134,14 +142,19 @@ const SignUpScreen = ({ navigation }: Props) => {
           error={isSubmitted && errorPassword}
           secureTextEntry={secureTextEntry}
         />
-        <TouchableOpacity style={styles.passwordIconContainer} onPress={togglePasswordVisibility}>
+        <TouchableOpacity
+          style={styles.passwordIconContainer}
+          onPress={togglePasswordVisibility}>
           <Image
-            style={[styles.eye, secureTextEntry ? styles.desactivedEye : styles.activeEye]}
+            style={[
+              styles.eye,
+              secureTextEntry ? styles.desactivedEye : styles.activeEye,
+            ]}
             source={require('../assets/ojo.png')}
           />
         </TouchableOpacity>
       </View>
-      <Text >
+      <Text>
         Use 8 or more characthers with a mix of letters, numbers, and symbols.
       </Text>
       <View style={styles.mainCheckboxContainer}>
@@ -161,14 +174,28 @@ const SignUpScreen = ({ navigation }: Props) => {
 
       <ButtonPrimary title="Sign Up" onPress={handleSignUp} isValid={isValid} />
       <Text style={styles.textOr}>or</Text>
-      <ButtonPrimary title="Sign Up With Google" imgSource={googleLogo} onPress={handleGoogleSignUp} isValid={true} />
+      <ButtonPrimary
+        title="Sign Up With Google"
+        imgSource={googleLogo}
+        onPress={handleGoogleSignUp}
+        isValid={true}
+      />
       <Text style={styles.textLogIn}>
-        Already have an account? <Text style={styles.underline} onPress={ () => navigation.navigate('LogInScreen') }>Log in</Text>
+        Already have an account?{' '}
+        <Text
+          style={styles.underline}
+          onPress={() => navigation.navigate('LogInScreen')}>
+          Log in
+        </Text>
       </Text>
-      <LoadingModal isLoading={isLoading} isRegistered={isRegistered} loadingTitle='Signing Up...' successTitle='Signed Up Succesfully'/>
+      <LoadingModal
+        isLoading={isLoading}
+        isRegistered={isRegistered}
+        loadingTitle="Signing Up..."
+        successTitle="Signed Up Succesfully"
+      />
     </KeyboardAvoidingView>
   );
 };
-
 
 export default SignUpScreen;

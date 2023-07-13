@@ -1,6 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { flightInfoHeight, rest } from '../helpers/DataDestinyDimensions';
-
+import {StyleSheet} from 'react-native';
+import {rest} from '../helpers/DataDestinyDimensions';
 
 const styles = StyleSheet.create({
   container: {
@@ -57,39 +56,17 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  flightBookingInfo: {
-    flex: 0.3,
-    maxHeight: flightInfoHeight,
-  },
   selectionBookingField: {
-    flex: 0.7,
+    flex: 1,
     maxHeight: rest,
   },
 
   bookingScreensButton: {
-    marginBottom: '15%',
+    marginBottom: '10%',
   },
 
   whereAreYouContainer: {
     flex: 1,
-  },
-  flightInfoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 10,
-    marginBottom: 10,
-  },
-  flightInfoTextContainer: {
-    width: '50%',
-    borderStyle: 'solid',
-    borderBottomWidth: 0.5,
-    borderBottomColor: 'grey',
-  },
-  flightInfoIconContainer: {
-    position: 'absolute',
-    top: '60%',
-    left: '50%',
-    transform: [{ translateX: -12.5 }, { translateY: -12.5 }], 
   },
 });
 

@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FlightInfo from '../FlightInfo/FlightInfo';
 import styles from './styles';
 import ConditionalRender from '../ConditionalRendering/ConditionalRendering';
+import { formatDate } from '../../helpers/FormatDate';
 
 const BookingCard = ({
   selectedFlightOrigin,
@@ -11,6 +12,7 @@ const BookingCard = ({
   date,
   passengers,
 }: any) => {
+
   return (
     <View style={styles.flightBookingInfo}>
       <View style={styles.flightInfoContainer}>
@@ -35,12 +37,12 @@ const BookingCard = ({
       </View>
 
       <View style={styles.bookingDatePassengersContainer}>
-        <ConditionalRender condition={selectedFlightDestination}>
-          <Text>{date}</Text>
+        <ConditionalRender condition={date}>
+          <Text style={styles.bookingCardDateText}>{formatDate(date)}</Text>
         </ConditionalRender>
 
         <ConditionalRender condition={selectedFlightDestination}>
-          <Text>{passengers}</Text>
+          <Text style={styles.bookingCardPassengersText}>{passengers}</Text>
         </ConditionalRender>
       </View>
     </View>

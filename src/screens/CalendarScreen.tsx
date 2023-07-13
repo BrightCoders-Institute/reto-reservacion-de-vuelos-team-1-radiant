@@ -39,8 +39,8 @@ export const CalendarScreen = ({navigation, route}: Props) => {
       <View style={styles.bookingScreensButton}>
         <ButtonPrimary
           title="Next"
-          isValid={handleDateSelect ? true : false}
-          disabled={handleDateSelect ? false : true}
+          isValid={selectedDate ? true : false}
+          disabled={selectedDate ? false : true}
           onPress={() => navigation.navigate('WhereAreYouScreen')}
         />
       </View>

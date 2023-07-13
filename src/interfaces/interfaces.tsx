@@ -47,3 +47,7 @@ export interface FlightProps {
   selectedFlight: any;
   alignRight?: boolean; 
 }
+
+export interface CalendarComponentProps {
+  onDateSelect: (date: string) => void;
+}

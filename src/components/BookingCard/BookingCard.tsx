@@ -41,8 +41,8 @@ const BookingCard = ({
           <Text style={styles.bookingCardDateText}>{formatDate(date)}</Text>
         </ConditionalRender>
 
-        <ConditionalRender condition={selectedFlightDestination}>
-          <Text style={styles.bookingCardPassengersText}>{passengers}</Text>
+        <ConditionalRender condition={passengers}>
+          <Text style={styles.bookingCardPassengersText}>{passengers > 1 ? `${passengers} passengers` : `${passengers} passenger`}</Text>
         </ConditionalRender>
       </View>
     </View>

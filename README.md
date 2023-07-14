@@ -18,3 +18,7 @@ Things you may want to cover:
 - How to Use the Project.
 - Credits
 - Badges
+- Co-authored-by: OrlandoLeso <landillo@users.noreply.github.com>
+  -Co-authored-by: Arnoldo Magaña <AMCernas@users.noreply.github.com>
+  -Co-authored-by: Miguel Cobian Meraz <mcmmiguel@users.noreply.github.com>
+  -Co-authored-by: IvanCa27 <caetanoivan028@gmail.com>

@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {View} from 'react-native';
 import styles from '../appTheme/AppTheme';
 import BookingCard from '../components/BookingCard/BookingCard';
-import { StackScreenProps } from '@react-navigation/stack';
-import { SubTitle } from '../components/SubTitle/SubTitle';
-import { ButtonPrimary } from '../components/ButtonPrimary/ButtonPrimary';
-import { PassengersSelector } from '../components/PassengersSelector/PassengersSelector';
+import {StackScreenProps} from '@react-navigation/stack';
+import {SubTitle} from '../components/SubTitle/SubTitle';
+import {ButtonPrimary} from '../components/ButtonPrimary/ButtonPrimary';
+import {PassengersSelector} from '../components/PassengersSelector/PassengersSelector';
 
 interface Props extends StackScreenProps<any, any> {}
 
 export const PassengerSelectorScreen = ({navigation, route}: Props) => {
+  const [selectedPassengers, setSelectedPassengers] = useState(1);
 
-const [selectedPassengers, setSelectedPassengers] = useState(1);
+  const handleSelectPassengers = (index: number) => {
+    setSelectedPassengers(index);
+  };
 
-    const handleSelectPassengers = (index: number) => {
-        setSelectedPassengers(index);
-    };
-
-    const [selectedFlightOrigin] = useState(
-        route.params?.selectedFlightOrigin || null,
-      );
-      const [selectedFlightDestination] = useState(
-        route.params?.selectedFlightDestination || null,
-      );
-      const [selectedDate] = useState(
-        route.params?.selectedDate || null,
-      );
+  const [selectedFlightOrigin] = useState(
+    route.params?.selectedFlightOrigin || null,
+  );
+  const [selectedFlightDestination] = useState(
+    route.params?.selectedFlightDestination || null,
+  );
+  const [selectedDate] = useState(route.params?.selectedDate || null);
 
   return (
     <View style={styles.whereAreYouContainer}>
@@ -46,9 +43,16 @@ const [selectedPassengers, setSelectedPassengers] = useState(1);
           title="Next"
           isValid={selectedPassengers ? true : false}
           disabled={selectedPassengers ? false : true}
-          onPress={() => navigation.navigate('WhereAreYouScreen', {})}
+          onPress={() =>
+            navigation.navigate('FinalBookingScreen', {
+              selectedFlightOrigin,
+              selectedFlightDestination,
+              selectedDate,
+              selectedPassengers,
+            })
+          }
         />
       </View>
     </View>
   );
-}
+};

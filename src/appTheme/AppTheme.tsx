@@ -60,13 +60,23 @@ const styles = StyleSheet.create({
     flex: 1,
     maxHeight: rest,
   },
-
+  finishBookingField: {
+    flex: 1,
+    maxHeight: rest,
+    marginBottom: '-40%',
+  },
   bookingScreensButton: {
     marginBottom: '10%',
   },
-
   whereAreYouContainer: {
     flex: 1,
+  },
+  requestContainer: {
+    flex: 1,
+    marginTop: '50%',
+  },
+  buttonFinishContainer: {
+    marginTop: '13%',
   },
 });
 

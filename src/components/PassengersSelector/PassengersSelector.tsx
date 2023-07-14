@@ -1,18 +1,19 @@
-import { View } from 'react-native';
-import { Picker } from 'react-native-wheel-pick';
-import React, { useState } from 'react';
-import Icon from 'react-native-vector-icons/Ionicons'
-import { styles } from './styles';
-import { SelectPassengerProps } from '../../interfaces/interfaces';
+import {View} from 'react-native';
+import {Picker} from 'react-native-wheel-pick';
+import React, {useState} from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {styles} from './styles';
+import {SelectPassengerProps} from '../../interfaces/interfaces';
 
-export const PassengersSelector = ({ onSelectPassengers }: SelectPassengerProps) => {
-    const [selectedPassenger, setSelectedPassenger] = useState(1);
+export const PassengersSelector = ({
+  onSelectPassengers,
+}: SelectPassengerProps) => {
+  const [selectedPassenger, setSelectedPassenger] = useState(1);
 
-    const onPickerSelect = (index: number) => {
-      setSelectedPassenger(index);
-      onSelectPassengers(index);
-    };
-    
+  const onPickerSelect = (index: number) => {
+    setSelectedPassenger(index);
+    onSelectPassengers(index);
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -24,20 +25,11 @@ export const PassengersSelector = ({ onSelectPassengers }: SelectPassengerProps)
           isShowSelectLine={false}
           selectedValue={selectedPassenger}
           onValueChange={(index: number) => onPickerSelect(index)}
-          pickerData={[
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-          ]}
+          pickerData={['1', '2', '3', '4', '5', '6', '7', '8']}
         />
       </View>
       <View>
-      <Icon
+        <Icon
           style={styles.arrowLeft}
           name="caret-forward"
           size={30}
@@ -48,7 +40,7 @@ export const PassengersSelector = ({ onSelectPassengers }: SelectPassengerProps)
           name="caret-back"
           size={30}
           color="#6170F7"
-        />      
+        />
       </View>
     </View>
   );

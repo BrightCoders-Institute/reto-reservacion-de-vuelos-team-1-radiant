@@ -35,7 +35,7 @@ export const FinalBookingScreen = ({navigation, route}: Props) => {
           isValid={true}
           disabled={false}
           onPress={() =>
-            navigation.navigate('PassengerSelectorScreen', {
+            navigation.navigate('MyFlightsScreen', {
               selectedFlightOrigin,
               selectedFlightDestination,
               selectedDate,

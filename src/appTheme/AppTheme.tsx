@@ -78,6 +78,28 @@ const styles = StyleSheet.create({
   buttonFinishContainer: {
     marginTop: '13%',
   },
+  myFlightsContainer:{
+    flex: 1,
+    marginTop: 30,
+  },
+  addFlightsButtonContainer:{
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 20,
+  },
+  headerMyFlightsContainer:{
+    flexDirection: 'row',
+    alignItems: 'center',
+
+    
+  },
+  titleStyle:{
+    fontSize: 26,
+    color: '#2D7BDD',
+    fontWeight: 'bold',
+    marginLeft: '20%',
+    textAlign: 'center',
+  },
 });
 
 export default styles;

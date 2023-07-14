@@ -8,6 +8,7 @@ import {FlightDestinationScreen} from '../screens/FlightDestinationScreen';
 import {CalendarScreen} from '../screens/CalendarScreen';
 import {PassengerSelectorScreen} from '../screens/PassengerSelectorScreen';
 import {FinalBookingScreen} from '../screens/FinalBookingScreen';
+import { MyFlightsScreen } from '../screens/MyFlightsScreen';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,11 @@ export const StackNavigator = () => {
         name="FinalBookingScreen"
         options={{headerShown: false}}
         component={FinalBookingScreen}
+      />
+      <Stack.Screen
+        name="MyFlightsScreen"
+        options={{headerShown: false}}
+        component={MyFlightsScreen}
       />
     </Stack.Navigator>
   );

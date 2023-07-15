@@ -45,7 +45,7 @@ export interface SelectFlightsProps {
 }
 export interface FlightProps {
   selectedFlight: any;
-  alignRight?: boolean; 
+  alignRight?: boolean;
 }
 
 export interface CalendarComponentProps {
@@ -53,5 +53,13 @@ export interface CalendarComponentProps {
 }
 
 export interface SelectPassengerProps {
-  onSelectPassengers:(index:number)=>void;
+  onSelectPassengers: (index: number) => void;
+}
+
+export interface bookingData {
+  id: string;
+  origin: string;
+  destination: string;
+  date: string;
+  passengers: number;
 }

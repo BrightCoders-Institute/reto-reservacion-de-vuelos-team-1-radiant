@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {rest} from '../helpers/DataDestinyDimensions';
+import { StyleSheet } from 'react-native';
+import { rest } from '../helpers/DataDestinyDimensions';
 
 const styles = StyleSheet.create({
   container: {
@@ -78,22 +78,34 @@ const styles = StyleSheet.create({
   buttonFinishContainer: {
     marginTop: '13%',
   },
-  myFlightsContainer:{
+  myFlightsContainer: {
     flex: 1,
-    marginTop: 30,
+    position: 'relative',
+    marginTop: 10,
   },
-  addFlightsButtonContainer:{
-    flex: 1,
-    justifyContent: 'flex-end',
+  addFlightsButtonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    right: '50%',
     marginBottom: 20,
+    zIndex: 1,
   },
-  headerMyFlightsContainer:{
+  headerMyFlightsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-
-    
+    justifyContent: 'center',
   },
-  titleStyle:{
+  activityIndicator: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleStyle: {
     fontSize: 26,
     color: '#2D7BDD',
     fontWeight: 'bold',

@@ -11,6 +11,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import moment from 'moment';
 
 interface Props extends StackScreenProps<any, any> { }
+
 export const FinalBookingScreen = ({ navigation, route }: Props) => {
   const [selectedFlightOrigin] = useState(
     route.params?.selectedFlightOrigin || null,

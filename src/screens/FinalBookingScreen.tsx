@@ -8,6 +8,7 @@ import { ButtonPrimary } from '../components/ButtonPrimary/ButtonPrimary';
 import { collection, addDoc } from 'firebase/firestore';
 import { FIRESTORE_DB } from '../database/firebaseconfig';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { User } from 'firebase/auth';
 import moment from 'moment';
 
 interface Props extends StackScreenProps<any, any> { }
@@ -25,22 +26,15 @@ export const FinalBookingScreen = ({ navigation, route }: Props) => {
   );
 
   const auth = getAuth();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Usuario en sesión
-        setUser(user);
-      } else {
-        // No hay usuario en sesión
-        setUser(null);
-      }
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      setUser(authUser);
     });
 
-    // Devuelve una función de limpieza para cancelar la suscripción cuando la pantalla se desmonte
     return () => unsubscribe();
-  }, []);
+  }, [auth]);
 
   const handleNextButton = async () => {
     try {
@@ -60,7 +54,7 @@ export const FinalBookingScreen = ({ navigation, route }: Props) => {
       navigation.navigate('MyFlightsScreen');
     } catch (error) {
       console.error('Error adding booking:', error);
-      alert('Failed to add booking: ' + error.message);
+      alert('Failed to add booking: ' + (typeof error === 'string' ? error : 'Unknown error'));
     }
   };
 

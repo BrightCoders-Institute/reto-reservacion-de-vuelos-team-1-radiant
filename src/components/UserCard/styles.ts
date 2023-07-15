@@ -15,7 +15,8 @@ export const styles = StyleSheet.create({
         borderRadius: 100,
     },
     name: {
-        marginLeft: 10,
-        fontSize: 16,
+        marginLeft: '10%',
+        fontSize: 18,
+        color: 'grey',
     },
 });

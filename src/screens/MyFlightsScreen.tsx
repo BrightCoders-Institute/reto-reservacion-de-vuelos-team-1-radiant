@@ -71,6 +71,7 @@ export const MyFlightsScreen = ({ navigation }: Props) => {
             selectedFlightDestination={item.destination}
             date={item.date}
             passengers={item.passengers}
+            isOnMyFLights={true}
           />
         )}
       />

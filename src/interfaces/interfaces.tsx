@@ -40,6 +40,14 @@ export interface SubTitleProps {
   text: string;
 }
 
+export interface bookingCardProps {
+  selectedFlightOrigin: string;
+  selectedFlightDestination: string;
+  date: string;
+  passengers: number;
+  isOnMyFLights?: boolean;
+}
+
 export interface SelectFlightsProps {
   onSelectFlight: (flight: any) => void
 }

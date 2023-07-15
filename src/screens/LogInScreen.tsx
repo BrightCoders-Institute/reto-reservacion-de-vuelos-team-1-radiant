@@ -74,7 +74,7 @@ export const LogInScreen = ({ navigation }: Props) => {
         setIsRegistered(true);
         setTimeout(() => {
           setIsRegistered(false);
-          navigation.navigate('WhereAreYouScreen');
+          navigation.navigate('MyFlightsScreen');
         }, 1500);
       }, 1500);
     }

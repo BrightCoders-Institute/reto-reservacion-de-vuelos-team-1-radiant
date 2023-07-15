@@ -1,16 +1,15 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 
-    userCardContainer:{
+    userCardContainer: {
         alignItems: 'flex-start',
-        marginTop: 20,
     },
-    avatarContainer:{
-        flexDirection:'row',
+    avatarContainer: {
+        flexDirection: 'row',
         alignItems: 'center',
-      },
-    avatar:{
+    },
+    avatar: {
         width: 50,
         height: 50,
         borderRadius: 100,
@@ -19,4 +18,4 @@ export const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 16,
     },
-})
+});

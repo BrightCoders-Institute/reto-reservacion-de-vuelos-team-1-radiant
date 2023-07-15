@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   headerMyFlightsContainer: {
+    marginVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -111,6 +112,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: '20%',
     textAlign: 'center',
+  },
+  emptyReservations: {
+    color: '#000',
+    textAlign: 'center',
+    marginTop: '10%',
+    width: '100%',
+    paddingBottom: 5,
+    borderStyle: 'solid',
+    borderColor: 'grey',
+    borderBottomWidth: 0.5,
   },
 });
 

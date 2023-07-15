@@ -58,6 +58,10 @@ export const MyFlightsScreen = ({ navigation }: Props) => {
         </ConditionalRender>
       </View>
 
+      <ConditionalRender condition={bookings.length === 0} >
+        <Text style={styles.emptyReservations}>You don't have reservations yet</Text>
+      </ConditionalRender>
+
       <FlatList
         data={bookings}
         keyExtractor={(item) => item.id}

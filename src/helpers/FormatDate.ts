@@ -6,5 +6,5 @@ export const formatDate = (dateString: string) => {
     year: 'numeric',
   };
   options.timeZone = 'UTC';
-  return dateObj.toLocaleDateString(undefined, options);
+  return dateObj.toLocaleDateString('en-US', options);
 };

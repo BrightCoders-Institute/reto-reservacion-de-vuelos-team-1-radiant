@@ -13,13 +13,11 @@ import ConditionalRender from '../components/ConditionalRendering/ConditionalRen
 
 interface Props extends StackScreenProps<any, any> { }
 
-
 export const MyFlightsScreen = ({ navigation }: Props) => {
   const [bookings, setBookings] = useState<bookingData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const auth = getAuth();
   const user = auth.currentUser;
-
 
   useEffect(() => {
     const unsubscribe = onSnapshot(

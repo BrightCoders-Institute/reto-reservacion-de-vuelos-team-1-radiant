@@ -47,7 +47,6 @@ export const FinalBookingScreen = ({ navigation, route }: Props) => {
         createdAt: moment().toISOString(),
       };
 
-      // Guarda el bookingData en la base de datos Firestore
       const docRef = await addDoc(collection(FIRESTORE_DB, 'bookings'), bookingData);
       console.log('Booking added with ID:', docRef.id);
 

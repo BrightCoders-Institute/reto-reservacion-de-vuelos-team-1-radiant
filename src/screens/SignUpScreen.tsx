@@ -79,7 +79,6 @@ const SignUpScreen = ({ navigation }: Props) => {
       });
       const userDocRef = doc(FIRESTORE_DB, 'users', user.uid);
       await setDoc(userDocRef, { firstName });
-      // console.log(response);
 
     } catch (error: any) {
       console.log(error);
@@ -97,7 +96,6 @@ const SignUpScreen = ({ navigation }: Props) => {
     setIsValid(isValidFields);
 
     if (isValidFields) {
-      //Add to database
       setIsLoading(true);
 
       setTimeout(() => {
@@ -127,8 +125,6 @@ const SignUpScreen = ({ navigation }: Props) => {
 
   return (
     <ScrollView>
-
-
       <KeyboardAvoidingView style={styles.container} behavior="height">
         <Title>Sign Up</Title>
         <InputField

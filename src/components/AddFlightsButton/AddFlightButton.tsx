@@ -3,8 +3,6 @@ import { Image, Text, TouchableOpacity } from 'react-native';
 import { ButtonProps } from '../../interfaces/interfaces';
 import { styles } from './styles';
 
-
-
 export const AddFlightButton = ({ title, onPress, imgSource, isValid, disabled }: ButtonProps) => {
     return (
         <TouchableOpacity
@@ -19,4 +17,3 @@ export const AddFlightButton = ({ title, onPress, imgSource, isValid, disabled }
         </TouchableOpacity>
     );
 };
-

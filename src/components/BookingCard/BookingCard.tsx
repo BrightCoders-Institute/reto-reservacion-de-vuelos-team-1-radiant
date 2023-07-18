@@ -1,20 +1,22 @@
 import React from 'react-native';
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FlightInfo from '../FlightInfo/FlightInfo';
 import styles from './styles';
 import ConditionalRender from '../ConditionalRendering/ConditionalRendering';
 import { formatDate } from '../../helpers/FormatDate';
+import { bookingCardProps } from '../../interfaces/interfaces';
 
 const BookingCard = ({
   selectedFlightOrigin,
   selectedFlightDestination,
   date,
   passengers,
-}: any) => {
+  isOnMyFLights,
+}: bookingCardProps) => {
 
   return (
-    <View style={styles.flightBookingInfo}>
+    <View style={isOnMyFLights ? [styles.flightBookingInfo, styles.bookingCardOnMyFlights] : styles.flightBookingInfo}>
       <View style={styles.flightInfoContainer}>
         <ConditionalRender condition={selectedFlightOrigin}>
           <View style={styles.flightInfoTextContainer}>

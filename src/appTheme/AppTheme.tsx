@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {rest} from '../helpers/DataDestinyDimensions';
+import { StyleSheet } from 'react-native';
+import { rest } from '../helpers/DataDestinyDimensions';
 
 const styles = StyleSheet.create({
   container: {
@@ -77,6 +77,51 @@ const styles = StyleSheet.create({
   },
   buttonFinishContainer: {
     marginTop: '13%',
+  },
+  myFlightsContainer: {
+    flex: 1,
+    position: 'relative',
+    marginTop: 10,
+  },
+  addFlightsButtonContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    right: '50%',
+    marginBottom: 20,
+    zIndex: 1,
+  },
+  headerMyFlightsContainer: {
+    marginVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  activityIndicator: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleStyle: {
+    fontSize: 26,
+    color: '#2D7BDD',
+    fontWeight: 'bold',
+    marginLeft: '20%',
+    textAlign: 'center',
+  },
+  emptyReservations: {
+    color: '#000',
+    textAlign: 'center',
+    marginTop: '10%',
+    width: '100%',
+    paddingBottom: 5,
+    borderStyle: 'solid',
+    borderColor: 'grey',
+    borderBottomWidth: 0.5,
   },
 });
 

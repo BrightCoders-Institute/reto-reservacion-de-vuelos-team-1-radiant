@@ -33,7 +33,8 @@ export interface LoadingModalProps {
   isLoading: boolean;
   isRegistered: boolean;
   loadingTitle: string;
-  successTitle: string;
+  title: string;
+  success: boolean;
 }
 
 export interface SubTitleProps {

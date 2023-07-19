@@ -24,6 +24,7 @@ import {
 } from '../helpers/formValidations';
 import LoadingModal from '../components/LoadingModal/LoadingModal';
 import CustomCheckbox from '../components/CustomCheckbox/CustomCheckbox';
+import {fetchSignInMethodsForEmail} from '@firebase/auth';
 
 interface Props extends StackScreenProps<any, any> { }
 
@@ -56,6 +57,8 @@ const SignUpScreen = ({ navigation }: Props) => {
   const [isValid, setIsValid] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const [authSuccess, setAuthSuccess] = useState(true);
+
   useEffect(() => {
     setIsValid(
       firstNameValidation(firstName, setErrorFirstName) &&
@@ -67,13 +70,19 @@ const SignUpScreen = ({ navigation }: Props) => {
 
   const handleSignUp = async () => {
     setIsLoading(true);
-    try {
+    try { 
+      const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+      if (signInMethods.length > 0) {
+        alert('Email already registered');
+        setIsLoading(false);
+        setAuthSuccess(false);
+        return;
+      }
       const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
       );
-
       await updateProfile(user, {
         displayName: firstName,
       });
@@ -82,6 +91,8 @@ const SignUpScreen = ({ navigation }: Props) => {
 
     } catch (error: any) {
       console.log(error);
+      alert('Sign in failed: ' + error.message);
+      setAuthSuccess(false);
     } finally {
       setIsLoading(false);
     }
@@ -96,6 +107,10 @@ const SignUpScreen = ({ navigation }: Props) => {
     setIsValid(isValidFields);
 
     if (isValidFields) {
+
+      setFirstName('');
+      setEmail('');
+      setPassword('');
       setIsLoading(true);
 
       setTimeout(() => {
@@ -179,7 +194,11 @@ const SignUpScreen = ({ navigation }: Props) => {
           />
         </View>
 
-        <ButtonPrimary title="Sign Up" onPress={handleSignUp} isValid={isValid} />
+        <ButtonPrimary
+          title="Sign Up"
+          onPress={handleSignUp}
+          isValid={isValid}
+        />
         <Text style={styles.textOr}>or</Text>
         <ButtonPrimary
           title="Sign Up With Google"
@@ -199,7 +218,8 @@ const SignUpScreen = ({ navigation }: Props) => {
           isLoading={isLoading}
           isRegistered={isRegistered}
           loadingTitle="Signing Up..."
-          successTitle="Signed Up Succesfully"
+          title={authSuccess ? 'Signed Up' : 'Error'}
+          success={authSuccess}
         />
       </KeyboardAvoidingView>
     </ScrollView>

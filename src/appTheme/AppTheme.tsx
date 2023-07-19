@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   emptyReservations: {
-    color: '#000',
     textAlign: 'center',
     marginTop: '10%',
     width: '100%',
@@ -122,7 +121,26 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: 'grey',
     borderBottomWidth: 0.5,
+    color: '#000',
   },
+  avatarContainer:{
+    alignItems: 'center',
+    marginTop: 20,
+},
+avatarSideMenu:{
+  width: 150,
+  height: 150,
+  borderRadius: 100,
+},
+menuContainer:{
+  marginVertical: 30,
+  marginHorizontal:30,
+},
+logoutButtonContainer: {
+  flex: 1,
+  justifyContent: 'flex-end',
+  marginBottom: 16,
+},
 });
 
 export default styles;

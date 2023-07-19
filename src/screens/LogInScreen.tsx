@@ -38,6 +38,8 @@ export const LogInScreen = ({ navigation }: Props) => {
   const [isValid, setIsValid] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+    const [authSuccess, setAuthSuccess] = useState(true);
+
   useEffect(() => {
     setIsValid(
       emailValidation(email, setErrorEmail) &&
@@ -54,6 +56,7 @@ export const LogInScreen = ({ navigation }: Props) => {
     } catch (error: any) {
       console.log(error);
       alert('Sign in failed: ' + error.message);
+      setAuthSuccess(false);
     } finally {
       setIsLoading(false);
     }
@@ -115,9 +118,14 @@ export const LogInScreen = ({ navigation }: Props) => {
           secureTextEntry={secureTextEntry}
         />
 
-        <TouchableOpacity style={styles.passwordIconContainer} onPress={togglePasswordVisibility}>
+        <TouchableOpacity
+          style={styles.passwordIconContainer}
+          onPress={togglePasswordVisibility}>
           <Image
-            style={[styles.eye, secureTextEntry ? styles.desactivedEye : styles.activeEye]}
+            style={[
+              styles.eye,
+              secureTextEntry ? styles.desactivedEye : styles.activeEye,
+            ]}
             source={require('../assets/ojo.png')}
           />
         </TouchableOpacity>
@@ -125,11 +133,27 @@ export const LogInScreen = ({ navigation }: Props) => {
 
       <ButtonPrimary title="Log In" onPress={handleSignIn} isValid={isValid} />
       <Text style={styles.textOr}>or</Text>
-      <ButtonPrimary title="Log In With Google" imgSource={googleLogo} onPress={handleGoogleSignUp} isValid={true} />
+      <ButtonPrimary
+        title="Log In With Google"
+        imgSource={googleLogo}
+        onPress={handleGoogleSignUp}
+        isValid={true}
+      />
       <Text style={styles.textLogIn}>
-        Don't have an account? <Text style={styles.underline} onPress={() => navigation.navigate('SignUpScreen')}>Sign Up</Text>
+        Don't have an account?{' '}
+        <Text
+          style={styles.underline}
+          onPress={() => navigation.navigate('SignUpScreen')}>
+          Sign Up
+        </Text>
       </Text>
-      <LoadingModal isLoading={isLoading} isRegistered={isRegistered} loadingTitle="Logging In" successTitle="Logged In" />
+      <LoadingModal
+        isLoading={isLoading}
+        isRegistered={isRegistered}
+        loadingTitle="Logging In"
+        title={authSuccess ? 'Logged In' : 'Error'}
+        success={authSuccess}
+      />
     </KeyboardAvoidingView>
   );
 };

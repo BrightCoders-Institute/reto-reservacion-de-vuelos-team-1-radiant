@@ -141,6 +141,12 @@ logoutButtonContainer: {
   justifyContent: 'flex-end',
   marginBottom: 16,
 },
+name: {
+  marginTop: 10,
+  fontSize: 18,
+  color: 'grey',
+  justifyContent: 'center',
+},
 });
 
 export default styles;

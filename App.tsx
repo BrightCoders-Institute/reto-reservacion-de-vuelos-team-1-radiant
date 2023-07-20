@@ -1,18 +1,35 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { SafeAreaView, StyleSheet, Dimensions, View } from 'react-native';
-import SignUpScreen from './src/screens/SignUpScreen';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StackNavigator } from './src/navigation/StackNavigator';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { SideMenu } from './src/navigation/SideMenu';
+import { FIREBASE_AUTH } from './src/database/firebaseconfig';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { AuthNavigator } from './src/navigation/AuthNavigator';
 
-function App(): JSX.Element {
+const Drawer = createDrawerNavigator();
+
+const App = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() =>{
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      console.log('user', user);
+      setUser(user); 
+    })
+  }, [])
+
   return (
-
     <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
+      {user ? (
+        <SideMenu />
+      ) : (
+        <AuthNavigator />
+      )}
+    </NavigationContainer>
   );
-}
-
+};
 
 export default App;
+
+

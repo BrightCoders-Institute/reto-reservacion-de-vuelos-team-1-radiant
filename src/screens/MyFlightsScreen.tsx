@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, FlatList, ActivityIndicator } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, View, FlatList, ActivityIndicator} from 'react-native';
 import styles from '../appTheme/AppTheme';
-import { StackScreenProps } from '@react-navigation/stack';
-import { UserCard } from '../components/UserCard/UserCard';
-import { AddFlightButton } from '../components/AddFlightsButton/AddFlightButton';
+import {StackScreenProps} from '@react-navigation/stack';
+import {UserCard} from '../components/UserCard/UserCard';
+import {AddFlightButton} from '../components/AddFlightsButton/AddFlightButton';
 import BookingCard from '../components/BookingCard/BookingCard';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import { FIRESTORE_DB } from '../database/firebaseconfig';
-import { getAuth } from 'firebase/auth';
-import { bookingData } from '../interfaces/interfaces';
+import {collection, query, where, onSnapshot} from 'firebase/firestore';
+import {FIRESTORE_DB} from '../database/firebaseconfig';
+import {getAuth} from 'firebase/auth';
+import {bookingData} from '../interfaces/interfaces';
 import ConditionalRender from '../components/ConditionalRendering/ConditionalRendering';
 
-interface Props extends StackScreenProps<any, any> { }
+interface Props extends StackScreenProps<any, any> {}
 
-export const MyFlightsScreen = ({ navigation }: Props) => {
+export const MyFlightsScreen = ({navigation}: Props) => {
   const [bookings, setBookings] = useState<bookingData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const auth = getAuth();
@@ -21,10 +21,13 @@ export const MyFlightsScreen = ({ navigation }: Props) => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      query(collection(FIRESTORE_DB, 'bookings'), where('userId', '==', user?.uid)),
-      (snapshot) => {
+      query(
+        collection(FIRESTORE_DB, 'bookings'),
+        where('userId', '==', user?.uid),
+      ),
+      snapshot => {
         const bookingsData: bookingData[] = [];
-        snapshot.forEach((doc) => {
+        snapshot.forEach(doc => {
           const data = doc.data();
           const booking: bookingData = {
             id: doc.id,
@@ -37,7 +40,7 @@ export const MyFlightsScreen = ({ navigation }: Props) => {
         });
         setBookings(bookingsData);
         setIsLoading(false);
-      }
+      },
     );
 
     return () => unsubscribe();
@@ -45,7 +48,7 @@ export const MyFlightsScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.myFlightsContainer}>
-      <View style={styles.headerMyFlightsContainer} >
+      <View style={styles.headerMyFlightsContainer}>
         <UserCard />
         <Text style={styles.titleStyle}>My Flights</Text>
       </View>
@@ -56,14 +59,16 @@ export const MyFlightsScreen = ({ navigation }: Props) => {
         </ConditionalRender>
       </View>
 
-      <ConditionalRender condition={bookings.length === 0} >
-        <Text style={styles.emptyReservations}>You don't have reservations yet</Text>
+      <ConditionalRender condition={bookings.length === 0}>
+        <Text style={styles.emptyReservations}>
+          You don't have reservations yet
+        </Text>
       </ConditionalRender>
 
       <FlatList
         data={bookings}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
           <BookingCard
             selectedFlightOrigin={item.origin}
             selectedFlightDestination={item.destination}

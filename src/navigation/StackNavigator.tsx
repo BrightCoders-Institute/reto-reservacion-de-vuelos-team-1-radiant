@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import SignUpScreen from '../screens/SignUpScreen';
 import {LogInScreen} from '../screens/LogInScreen';
@@ -8,13 +8,25 @@ import {FlightDestinationScreen} from '../screens/FlightDestinationScreen';
 import {CalendarScreen} from '../screens/CalendarScreen';
 import {PassengerSelectorScreen} from '../screens/PassengerSelectorScreen';
 import {FinalBookingScreen} from '../screens/FinalBookingScreen';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { FIREBASE_AUTH } from '../database/firebaseconfig';
 import { MyFlightsScreen } from '../screens/MyFlightsScreen';
 
 const Stack = createStackNavigator();
 
 export const StackNavigator = () => {
+
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() =>{
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      console.log('user', user);
+      setUser(user); 
+    })
+  }, [])
+
   return (
-    <Stack.Navigator
+    <Stack.Navigator 
       screenOptions={{
         cardStyle: {
           justifyContent: 'center',
@@ -24,21 +36,32 @@ export const StackNavigator = () => {
           marginHorizontal: 'auto',
         },
       }}>
-      <Stack.Screen
-        name="SignUpScreen"
-        options={{headerShown: false}}
-        component={SignUpScreen}
-      />
-      <Stack.Screen
-        name="LogInScreen"
-        options={{headerShown: false}}
-        component={LogInScreen}
-      />
+        {user ? (
+          <>
+          <Stack.Screen
+            name="MyFlightsScreen"
+            options={{headerShown: false}}
+            component={MyFlightsScreen}
+            />
+          </>
+        ) : (
+          <Stack.Screen
+          name="LogInScreen"
+          options={{headerShown: false}}
+          component={LogInScreen}
+        />
+        )}
       <Stack.Screen
         name="WhereAreYouScreen"
         options={{headerShown: false}}
         component={WhereAreYouScreen}
       />
+      <Stack.Screen
+        name="SignUpScreen"
+        options={{headerShown: false}}
+        component={SignUpScreen}
+      />
+
       <Stack.Screen
         name="FlightDestinationScreen"
         options={{headerShown: false}}
@@ -58,11 +81,6 @@ export const StackNavigator = () => {
         name="FinalBookingScreen"
         options={{headerShown: false}}
         component={FinalBookingScreen}
-      />
-      <Stack.Screen
-        name="MyFlightsScreen"
-        options={{headerShown: false}}
-        component={MyFlightsScreen}
       />
     </Stack.Navigator>
   );

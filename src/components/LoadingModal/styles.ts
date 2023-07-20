@@ -39,9 +39,14 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   signUpModalText: {
-    color: '#2D7BDD',
     textAlign: 'center',
     marginTop: 20,
+  },
+  signUpModalTextSuccess: {
+    color: '#2D7BDD',
+  },
+  signUpModalTextError: {
+    color: 'red',
   },
 });
 

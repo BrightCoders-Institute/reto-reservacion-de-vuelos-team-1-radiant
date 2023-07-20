@@ -1,8 +1,8 @@
 import {initializeApp} from '@firebase/app';
 import { getAuth } from 'firebase/auth';
 import {getFirestore} from 'firebase/firestore'; 
-// Your web app's Firebase configuration
-const firebaseConfig = {
+
+export const firebaseConfig = {
   apiKey: "AIzaSyBABDliC9jbplJLUgblm2ZpNhY5gt8kUlU",
   authDomain: "team-1-radiant-vuelo.firebaseapp.com",
   projectId: "team-1-radiant-vuelo",
